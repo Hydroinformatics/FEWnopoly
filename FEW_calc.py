@@ -36,6 +36,7 @@ class Setup:
             self.sw_init = 14 + three_dieroll()
             self.fish_init = 15 + dieroll()
             self.fish_lim = 15
+            
             print("Initial Surface Water Tracker: " + str(self.sw_init))
             print("Initial Groundwater Tracker: " + str(self.gw_init))
             print("Initial Environmental Tracker: " + str(self.env_init))
@@ -70,7 +71,15 @@ class Energy:
         # else:
         #     print("not enough energy")
 
-
+class PersonalCalc:
+    def __init__(self):
+        self.wr = None
+        
+    def MoneyLoss(self, gamestate, invest):
+        loss = gamestate.energy - invest
+        return loss
+        
+        
 # class GW:
 #     def __init__(self, r):
 #         self.dieroll = None

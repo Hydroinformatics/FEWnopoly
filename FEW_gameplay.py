@@ -30,6 +30,9 @@ buyenergy.Buy_Energy()
 # print(buyenergy.Buy_Energy())
 
 
+playercal = FEW_calc.PersonalCalc()
+playercal.MoneyLoss(buyenergy,10)
+
 # Buy/Plant/trade Crops
 # place water right
 # plant crops-- $5 per crop, 3 crops per land
