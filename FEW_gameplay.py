@@ -15,10 +15,9 @@ import FEW_calc
 
 # assign random roles?
 
-m = input("Enter a mode; easy medium or hard: ")
+m = input("Enter a mode; easy medium or hard:")
 setup = FEW_calc.Setup(m)
 setup.select_mode()
-
 
 
 # --------------------------------------------------------
@@ -29,7 +28,6 @@ e = input("How many total energy units will all parties be purchasing this round
 buyenergy = FEW_calc.Energy(e)
 buyenergy.Buy_Energy()
 # print(buyenergy.Buy_Energy())
-
 
 
 # Buy/Plant/trade Crops

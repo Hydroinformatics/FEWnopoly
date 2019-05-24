@@ -39,9 +39,11 @@ class Setup:
             print("Initial Surface Water Tracker: " + str(self.sw_init))
             print("Initial Groundwater Tracker: " + str(self.gw_init))
             print("Initial Environmental Tracker: " + str(self.env_init))
+            
         elif (self.mode == "medium"):
             print("medium")
             return 30
+        
         elif (self.mode == "hard"):
             print("hard")
             return 0
@@ -49,15 +51,18 @@ class Setup:
             print("easy")
 
     def GW_track(self, a):
-        return self.gw_init - int(a)
+        self.gw_init = self.gw_init - int(a)
+        ##return self.gw_init
 
 
 class Energy:
     def __init__(self, e):
+        self.e = e
         self.energy = 24
+        
 
     def Buy_Energy(self):
-        return self.energy - int(e)
+        return self.energy - int(self.e)
         # if self.energy > 0:
         #     print(self.energy - int(e))
         #     print(self.energy)
