@@ -1,4 +1,8 @@
 import random
+def dieroll():
+    return random.randrange(1,6,1)
+def three_dieroll():
+    return random.randrange(1, 6, 1) + random.randrange(1, 6, 1) + random.randrange(1, 6, 1)
 
 class players:
     def __init__(self, governor, farmer1, farmer2, farmer3):
@@ -7,27 +11,34 @@ class players:
         self.farmer2 = farmer2
         self.farmer3 = farmer3
 
+# assign roles randomly?
+
 
 
 class Setup:
     def __init__(self, mode="easy"):
         self.mode = mode
+        self.gw_init = 100
+        self.env_init = 0
+        self.sw_init = 0
         self.gw_lim = 0
         self.env_lim = 0
-        self.gw_track = 100
-        self.sw_track = 0
+        self.fish_init = 0
+        self.fish_lim = 15
 
-
-    def dieroll():
-        return random.randrange(1, 6, 1)
 
     def select_mode(self):
         if (self.mode == "easy"):
             print("easy")
             self.gw_lim = 65 + dieroll()
+            self.env_init = dieroll()
             self.env_lim = 0 + dieroll()
-            print("Current Groundwater Tracker: " + str(self.gw_lim))
-            print("Current Environmental Tracker: " + str(self.env_lim))
+            self.sw_init = 14 + three_dieroll()
+            self.fish_init = 15 + dieroll()
+            self.fish_lim = 15
+            print("Initial Surface Water Tracker: " + str(self.sw_init))
+            print("Initial Groundwater Tracker: " + str(self.gw_init))
+            print("Initial Environmental Tracker: " + str(self.env_init))
         elif (self.mode == "medium"):
             print("medium")
             return 30
@@ -37,19 +48,22 @@ class Setup:
         else:
             print("easy")
 
-    def track_gw(self,a):
-        return self.gw_track - int(a)
-    def track_sw(self,b):
-        return self.sw_track - int(b)
+    def GW_track(self, a):
+        return self.gw_init - int(a)
+
 
 class Energy:
     def __init__(self, e):
-        self.Energy = 24
-        self.e = 0
+        self.energy = 24
 
-    def Buy_Energy(self, e):
-        return self.Energy - int(e)
-
+    def Buy_Energy(self):
+        return self.energy - int(e)
+        # if self.energy > 0:
+        #     print(self.energy - int(e))
+        #     print(self.energy)
+        #     print("Energy units remaining: ")
+        # else:
+        #     print("not enough energy")
 
 
 # class GW:
@@ -80,5 +94,3 @@ class Energy:
 #setup big class- game class [put together all the classes as below)
 # self.GW_tracker = GW_tracker()
 
-def dieroll():
-    return random.randrange(1,6,1)
