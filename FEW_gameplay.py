@@ -15,7 +15,7 @@ import FEW_calc
 
 # assign random roles?
 
-m = input("Enter a mode; easy medium or hard:")
+m = input("Enter a mode; easy medium or hard: ")
 setup = FEW_calc.Setup(m)
 setup.select_mode()
 
@@ -25,13 +25,20 @@ setup.select_mode()
 
 # ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
 e = input("How many total energy units will all parties be purchasing this round?: ")
-buyenergy = FEW_calc.Energy(e)
-buyenergy.Buy_Energy()
-# print(buyenergy.Buy_Energy())
+buyenergy1 = FEW_calc.Energy(e)
+print(buyenergy1.Buy_Energy())
+
+a = input("how many gw units: ")
+usegw = FEW_calc.Setup(a)
+usegw.GW_track(a)
+
+a = input("how many gw units: ")
+usegw = FEW_calc.Setup(a)
+usegw.GW_track(a)
 
 
-playercal = FEW_calc.PersonalCalc()
-playercal.MoneyLoss(buyenergy,10)
+# playercal = FEW_calc.PersonalCalc()
+# playercal.MoneyLoss(buyenergy, 10)
 
 # Buy/Plant/trade Crops
 # place water right
@@ -45,6 +52,8 @@ playercal.MoneyLoss(buyenergy,10)
 
 # Set SURFACE WATER level
 # How do I call out just the SW from sw_init??
+
+
 
 
 # Farm/water crops

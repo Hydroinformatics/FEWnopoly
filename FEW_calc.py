@@ -13,10 +13,10 @@ class players:
 
 # assign roles randomly?
 
-
+gw = 100
 
 class Setup:
-    def __init__(self, mode="easy"):
+    def __init__(self, a, mode="easy"):
         self.mode = mode
         self.gw_init = 100
         self.env_init = 0
@@ -25,14 +25,15 @@ class Setup:
         self.env_lim = 0
         self.fish_init = 0
         self.fish_lim = 15
-
+        self.a = a
 
     def select_mode(self):
         if (self.mode == "easy"):
             print("easy")
             self.gw_lim = 65 + dieroll()
+            self.gw_init = 100
             self.env_init = dieroll()
-            self.env_lim = 0 + dieroll()
+            self.env_lim = 25 + dieroll()
             self.sw_init = 14 + three_dieroll()
             self.fish_init = 15 + dieroll()
             self.fish_lim = 15
@@ -52,8 +53,12 @@ class Setup:
             print("easy")
 
     def GW_track(self, a):
-        self.gw_init = self.gw_init - int(a)
-        ##return self.gw_init
+        self.gw_lim = gw - int(a)
+        print(self.gw_init)
+
+
+
+
 
 
 class Energy:
@@ -64,12 +69,6 @@ class Energy:
 
     def Buy_Energy(self):
         return self.energy - int(self.e)
-        # if self.energy > 0:
-        #     print(self.energy - int(e))
-        #     print(self.energy)
-        #     print("Energy units remaining: ")
-        # else:
-        #     print("not enough energy")
 
 class PersonalCalc:
     def __init__(self):
