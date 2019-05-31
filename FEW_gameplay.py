@@ -39,7 +39,6 @@ check_bool = 1
 e_portfolio = {'coal': 20, 'hydro': 10, 'renewable': 5}
 while(check_bool == 1):
 
-    
     check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
     if check_bool == 1:
         print 'Invalid total of energy units requested. More energy units than available capacity of sources'
@@ -51,10 +50,13 @@ while(check_bool == 1):
     
     if check_bool == 0:
         gov = input('Enter Cities energy payment: ')
-        f1 = input('Enter ' + players.player['farmer1']['name'] + "'s" + ' energy payment: ')
-        f2 = input('Enter ' + players.player['farmer2']['name'] + "'s" + ' energy payment: ')
-        f3 = input('Enter ' + players.player['farmer3']['name'] + "'s" + ' energy payment: ')
-        #players_names = [gov,f1,f2,f3] #Commenting out while in development
+        e_f1 = input('Enter ' + players.player['farmer1']['name'] + "'s" + ' energy payment: ')
+        e_f2 = input('Enter ' + players.player['farmer2']['name'] + "'s" + ' energy payment: ')
+        e_f3 = input('Enter ' + players.player['farmer3']['name'] + "'s" + ' energy payment: ')
+        
+        if gov + e_f1 + e_f2 + e_f3 < tcost:
+            print 'Total payment is lower than total cost. Please adjust your inputs accordingly'
+            check_bool = 1
     
 
 
