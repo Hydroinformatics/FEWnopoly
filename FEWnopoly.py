@@ -13,7 +13,9 @@ class players:
                 self.player['farmer' + str(i)]=dict()
                 self.player['farmer' + str(i)]['name']  = names[i]
                 self.player['farmer' + str(i)]['money']  = 0
+                self.player['farmer' + str(i)]['land']  = 0
                 self.player['farmer' + str(i)]['energy']  = 0
+                self.player['farmer' + str(i)]['play_order']  = None
                 self.player['farmer' + str(i)]['water_right'] = dict()
                 self.player['farmer' + str(i)]['farms'] = dict()
                 
@@ -28,7 +30,9 @@ class players:
                     self.player['farmer' + str(farmer_count)]  = dict()
                     self.player['farmer' + str(farmer_count)]['name']  = names[i]
                     self.player['farmer' + str(farmer_count)]['money']  = 0
+                    self.player['farmer' + str(farmer_count)]['land']  = 0
                     self.player['farmer' + str(farmer_count)]['energy']  = 0
+                    self.player['farmer' + str(farmer_count)]['play_order']  = None
                     self.player['farmer' + str(farmer_count)]['water_right'] = dict()
                     self.player['farmer' + str(farmer_count)]['farms'] = dict()
                     farmer_count = farmer_count + 1

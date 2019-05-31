@@ -27,7 +27,9 @@ game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
 # --------------------------------------------------------
-# ROUND 1
+# ROUND counter
+
+rounds = 0
 
 # ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
 
@@ -74,9 +76,21 @@ game.players['farmer3']['money'] = game.players['farmer3']['money'] - e_f3
           
 # Check status of the game
 game.check_status()
-  
+
 #Update env. degradation
 game.env_level = game.env_level - envcost
+
+
+# BUY, PLANT AND TRADE - PER FARMER
+
+
+for i in range(1,4):
+    print game.players['farmer' + str(i)]['play_order'] 
+#    e_f1 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
+#    e_f2 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
+#    e_f3 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
+    
+
 
 #a = input('how many gw units: ')
 #usegw = FEW_calc.Setup(a)
