@@ -2,7 +2,6 @@
 
 import random, json
 
-
 def shuffle_strings(data):
 #    shuffle_data = []
 #    for w in random.sample(data, len(data)):
@@ -30,17 +29,18 @@ def init_event_cards(mode,ecards):
     return event_cards
 
 
-def init_farmers(players,inhe_cards):
+def init_farmers(players,inhr_cards):
     
-    wr_cards = random.sample(list(inhe_cards.keys()),len(list(inhe_cards.keys())))
+    wr_cards = random.sample(list(inhr_cards.keys()),len(list(inhr_cards.keys())))
     counter = 0
     for player in players.keys():
         if player != 'governor':
-            players[player]['water_right']['order'] = inhe_cards[wr_cards[counter]]['order']
-            players[player]['water_right']['volume'] = inhe_cards[wr_cards[counter]]['volume']
+            players[player]['water_right']['money'] = inhr_cards[wr_cards[counter]]['money']
+            players[player]['water_right']['order'] = inhr_cards[wr_cards[counter]]['order']
+            players[player]['water_right']['volume'] = inhr_cards[wr_cards[counter]]['volume']
+    
+    return players
             
-
-
 
 ## Read Json files with boardgame data
 with open('./data/event_cards.json', 'r') as f:
@@ -48,3 +48,10 @@ with open('./data/event_cards.json', 'r') as f:
     
 with open('./data/fish_pop_table.json', 'r') as f:
     fish_pop_table = json.load(f)
+    
+with open('./data/inheritance_cards.json', 'r') as f:
+    inheritance_cards = json.load(f)
+
+with open('./data/energy_tabs.json', 'r') as f:
+    energy_tabs = json.load(f)
+

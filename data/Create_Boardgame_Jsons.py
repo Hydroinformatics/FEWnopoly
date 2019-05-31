@@ -24,8 +24,16 @@ fish_pop_table = {'Inf-20':{'max': float('Inf'), 'min':20, 'pop_rates':[5,5,5,4,
 
 inheritance_cards = {1:{'order': 1, 'money': 100, 'volume': float('Inf')},
                      2:{'order': 3, 'money': 110, 'volume': float('Inf')},
-                     3:{'order': 5, 'money': 125, 'volume': float('Inf')}
-        }
+                     3:{'order': 5, 'money': 125, 'volume': float('Inf')}}
+
+hydro_cost = {30: 1, 20: 2, 10: 3, 0:4}
+energy_tabs = {'coal':{1:{'max_capacity': 15, 'env_cost': 1.0/3, 'dollar_cost': 1}},
+               'renewable':{1:{'max_capacity': 9, 'env_cost': 1.0/9, 'dollar_cost': 2}},
+               'hydro':{1:{'max_capacity': 24, 'env_cost': 1.0/12, 'dollar_cost': hydro_cost}}}
+
+
+               
+                      
 
 with open('fish_pop_table.json', 'w') as fp:
     json.dump(fish_pop_table, fp)
@@ -33,5 +41,8 @@ with open('fish_pop_table.json', 'w') as fp:
 with open('event_cards.json', 'w') as fp:
     json.dump(event_cards, fp)
     
-with open('inheritance cards.json', 'w') as fp:
+with open('inheritance_cards.json', 'w') as fp:
     json.dump(inheritance_cards, fp)
+    
+with open('energy_tabs.json', 'w') as fp:
+    json.dump(energy_tabs, fp)

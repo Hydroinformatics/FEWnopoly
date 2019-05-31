@@ -24,16 +24,34 @@ players = FEWnopoly.players(players_names,players_roles) #Specified assigment of
 #m = input("Enter a mode; easy medium or hard: ") #Commenting out while in development
 m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
-
+energy = FEWnopoly.Energy_Resources()
 
 # --------------------------------------------------------
 # ROUND 1
 
 # ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
-#e = input("How many total energy units will all parties be purchasing this round?: ")#Commenting out while in development
-e = np.random.choice(range(0,10))
-buyenergy1 = FEW_calc.Energy(e)
-print(buyenergy1.Buy_Energy())
+
+check_bool = 1
+#e_coal = input("How many total energy units of coal will all parties be purchasing this round?: ")#Commenting out while in development
+#e_hydro = input("How many total energy units of hydropower will all parties be purchasing this round?: ")#Commenting out while in development
+#e_rewble = input("How many total energy units of renewables will all parties be purchasing this round?: ")#Commenting out while in development
+#e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
+e_portfolio = {'coal': 20, 'hydro': 10, 'renewable': 5}
+while(check_bool == 1):
+
+    
+    check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
+    if check_bool == 1:
+        print 'Invalid total of energy units requested. More energy units than available capacity of sources'
+        #e_coal = input("How many total energy units of coal will all parties be purchasing this round?: ")#Commenting out while in development
+        #e_hydro = input("How many total energy units of hydropower will all parties be purchasing this round?: ")#Commenting out while in development
+        #e_rewble = input("How many total energy units of renewables will all parties be purchasing this round?: ")#Commenting out while in development
+        #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
+        e_portfolio = {'coal': 12, 'hydro': 10, 'renewable': 5}
+
+
+#Update env. degradation
+game.env_level = game.env_level - envcost
 
 #a = input("how many gw units: ")
 #usegw = FEW_calc.Setup(a)

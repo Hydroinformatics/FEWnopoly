@@ -11,7 +11,9 @@ class players:
             for i in range(1,4):
                 self.player['farmer' + str(i)]=dict()
                 self.player['farmer' + str(i)]['name']  = names[i]
-                self.player['farmer' + str(i)]['water right'] = dict()
+                self.player['farmer' + str(i)]['money']  = 0
+                self.player['farmer' + str(i)]['water_right'] = dict()
+                self.player['farmer' + str(i)]['farms'] = dict()
                 
         else: #Respects the chosen roles by users
               # Will fail if words are misspelled. Need to fix.
@@ -23,7 +25,9 @@ class players:
                 else:
                     self.player['farmer' + str(farmer_count)]  = dict()
                     self.player['farmer' + str(farmer_count)]['name']  = names[i]
-                    self.player['farmer' + str(farmer_count)]['water right'] = dict()
+                    self.player['farmer' + str(farmer_count)]['money']  = names[i]
+                    self.player['farmer' + str(farmer_count)]['water_right'] = dict()
+                    self.player['farmer' + str(farmer_count)]['farms'] = dict()
                     farmer_count = farmer_count + 1
         
 
@@ -35,10 +39,10 @@ class Boardgame:
         self.mode = mode.lower()
         
         #Initiation of trackers used in the game
-        self.gw_init = 100 # groundwater tracker
-        self.sw_init = 0 # surface water tracker
-        self.env_init = 0 # environmental degradation tracker
-        self.fish_init = 0 # Salmon pop. tracker
+        self.gw_level = 100 # groundwater tracker
+        self.sw_level = 0 # surface water tracker
+        self.env_level = 0 # environmental degradation tracker
+        self.fish_level = 0 # Salmon pop. tracker
         
         #Resources thresholds: If any of these is violated, everyone loses in the game
         self.gw_lim = 0 # groundwater limit
@@ -48,26 +52,29 @@ class Boardgame:
         #Initiate the game & parameters based on selected mode
         self.event_cards = None
         self.fish_pop_table = ut.fish_pop_table
+        self.inhr_cards = ut.inheritance_cards
         self.ini_setup()
         
-        # Add names of players and roles
-        self.players = players
+        # Add names of players, roles and attributes
+        self.players = ut.init_farmers(players,self.inhr_cards)
 
     def ini_setup(self):
         if (self.mode == 'easy'):
             print('Setting up game in easy mode')
-            self.event_cards = ut.init_event_cards(self.mode,ut.event_cards)
-            self.gw_lim = 65 + ut.dieroll()
-            self.gw_init = 100
-            self.env_init = ut.dieroll()
-            self.env_lim = 25 + ut.dieroll()
-            self.sw_init = 14 + ut.three_dieroll()
-            self.fish_init = 15 + ut.dieroll()
-            self.fish_lim = 15
             
-            print("Initial Surface Water Tracker: " + str(self.sw_init))
-            print("Initial Groundwater Tracker: " + str(self.gw_init))
-            print("Initial Environmental Tracker: " + str(self.env_init))
+            self.event_cards = ut.init_event_cards(self.mode,ut.event_cards)
+            
+            self.gw_lim = 65 + ut.dieroll()
+            
+            self.env_level = ut.dieroll()
+            self.env_lim = 25 + ut.dieroll()        
+            
+            self.fish_level = 15 + ut.dieroll()
+
+            
+            print("Initial Surface Water Tracker: " + str(self.sw_level))
+            print("Initial Groundwater Tracker: " + str(self.gw_level))
+            print("Initial Environmental Tracker: " + str(self.env_level))
             
         elif (self.mode == 'medium'):
             print('Setting up game in easy medium')
@@ -84,16 +91,49 @@ class Boardgame:
 
 
 
+class Energy_Resources:
+    def __init__(self):
+        self.energy_tabs = ut.energy_tabs        
 
-
-class Energy:
-    def __init__(self, e):
-        self.e = e
-        self.energy = 24
+    def Buy_Energy(self, portfolio, game):
         
+        tcost = 0
+        envcost = 0
+        check_bool = 0
+        
+        for e in portfolio.keys():
+            eunits = portfolio[e]
+            ecounter = 0
+            for source in self.energy_tabs[e]:
+                if ecounter == eunits:
+                    break
+                else:
+                    if eunits - ecounter >= self.energy_tabs[e][source]['max_capacity']:
+                        temp_e = self.energy_tabs[e][source]['max_capacity']
+                    else:
+                        temp_e = (eunits - ecounter)
+                        
+                    envcost = envcost + (temp_e*self.energy_tabs[e][source]['env_cost'])
+                    if e == 'hydro':
+                        hydro_cost_lims = self.energy_tabs[e][source]['dollar_cost'].keys() 
+                        hydro_cost_lims.sort(reverse=True)
+                        for lim in hydro_cost_lims:
+                            if game.fish_level >= lim:
+                                tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'][lim])
+                    else:
+                        tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'])
+                    
+                    ecounter = ecounter + temp_e
+            
+            if eunits - ecounter != 0: # If users requested more energy than available
+                check_bool = 1
+                break
+                
+        return check_bool, tcost, envcost
+    
+    
+                        
 
-    def Buy_Energy(self):
-        return self.energy - int(self.e)
 
 class PersonalCalc:
     def __init__(self):

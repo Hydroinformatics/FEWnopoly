@@ -1,0 +1,1 @@
+{"coal": {"1": {"max_capacity": 15, "dollar_cost": 1, "env_cost": 0.3333333333333333}}, "renewable": {"1": {"max_capacity": 9, "dollar_cost": 2, "env_cost": 0.1111111111111111}}, "hydro": {"1": {"max_capacity": 24, "dollar_cost": {"0": 4, "10": 3, "20": 2, "30": 1}, "env_cost": 0.08333333333333333}}}
