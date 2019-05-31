@@ -4,10 +4,10 @@ import FEWnopoly
 
 # Gameplay Setup
 
-# gov = input("Enter Governer's Name: ")
-# f1 = input("Enter Farmer 1's Name: ")
-# f2 = input("Enter Farmer 2's Name: ")
-# f3 = input("Enter Farmer 3's Name")
+# gov = input('Enter Governer's Name: ')
+# f1 = input('Enter Farmer 1's Name: ')
+# f2 = input('Enter Farmer 2's Name: ')
+# f3 = input('Enter Farmer 3's Name')
 #players_names = [gov,f1,f2,f3] #Commenting out while in development
 players_names = ['Nick','Sammy','Andrew','Joel']
 
@@ -15,13 +15,13 @@ players_names = ['Nick','Sammy','Andrew','Joel']
 players_roles = ['governor','farmer','farmer','farmer']
 players = FEWnopoly.players(players_names,players_roles) #Specified assigment of roles
 
-#print("Governer: " + players.player['governor']['name'])
-#print("Farmer 1: " + players.player['farmer1']['name'])
-#print("Farmer 2: " + players.player['farmer2']['name'])
-#print("Farmer 3: " + players.player['farmer3']['name'])
+#print('Governer: ' + players.player['governor']['name'])
+#print('Farmer 1: ' + players.player['farmer1']['name'])
+#print('Farmer 2: ' + players.player['farmer2']['name'])
+#print('Farmer 3: ' + players.player['farmer3']['name'])
 
 
-#m = input("Enter a mode; easy medium or hard: ") #Commenting out while in development
+#m = input('Enter a mode; easy medium or hard: ') #Commenting out while in development
 m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
@@ -32,9 +32,9 @@ energy = FEWnopoly.Energy_Resources()
 # ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
 
 check_bool = 1
-#e_coal = input("How many total energy units of coal will all parties be purchasing this round?: ")#Commenting out while in development
-#e_hydro = input("How many total energy units of hydropower will all parties be purchasing this round?: ")#Commenting out while in development
-#e_rewble = input("How many total energy units of renewables will all parties be purchasing this round?: ")#Commenting out while in development
+#e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
+#e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
+#e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
 #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
 e_portfolio = {'coal': 20, 'hydro': 10, 'renewable': 5}
 while(check_bool == 1):
@@ -43,21 +43,29 @@ while(check_bool == 1):
     check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
     if check_bool == 1:
         print 'Invalid total of energy units requested. More energy units than available capacity of sources'
-        #e_coal = input("How many total energy units of coal will all parties be purchasing this round?: ")#Commenting out while in development
-        #e_hydro = input("How many total energy units of hydropower will all parties be purchasing this round?: ")#Commenting out while in development
-        #e_rewble = input("How many total energy units of renewables will all parties be purchasing this round?: ")#Commenting out while in development
+        #e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
+        #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
+        #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
         #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
         e_portfolio = {'coal': 12, 'hydro': 10, 'renewable': 5}
+    
+    if check_bool == 0:
+        gov = input('Enter Cities energy payment: ')
+        f1 = input('Enter ' + players.player['farmer1']['name'] + "'s" + ' energy payment: ')
+        f2 = input('Enter ' + players.player['farmer2']['name'] + "'s" + ' energy payment: ')
+        f3 = input('Enter ' + players.player['farmer3']['name'] + "'s" + ' energy payment: ')
+        #players_names = [gov,f1,f2,f3] #Commenting out while in development
+    
 
 
 #Update env. degradation
 game.env_level = game.env_level - envcost
 
-#a = input("how many gw units: ")
+#a = input('how many gw units: ')
 #usegw = FEW_calc.Setup(a)
 #usegw.GW_track(a)
 #
-#a = input("how many gw units: ")
+#a = input('how many gw units: ')
 #usegw = FEW_calc.Setup(a)
 #usegw.GW_track(a)
 
@@ -95,10 +103,10 @@ game.env_level = game.env_level - envcost
 # --------------------------------------------------------
 # ROUND 2
 
-# a = input("Enter how many groundwater units you wish to use this round: ")
-# print("The groundwater level is: " + str(setup.GW_track(a)))
+# a = input('Enter how many groundwater units you wish to use this round: ')
+# print('The groundwater level is: ' + str(setup.GW_track(a)))
 #
-# e = input("How many total energy units will all parties be purchasing this round?: ")
+# e = input('How many total energy units will all parties be purchasing this round?: ')
 # buyenergy = FEW_calc.Energy()
 # buyenergy.Buy_Energy()
 # # print(str(buyenergy.Buy_Energy()))

@@ -12,6 +12,7 @@ class players:
                 self.player['farmer' + str(i)]=dict()
                 self.player['farmer' + str(i)]['name']  = names[i]
                 self.player['farmer' + str(i)]['money']  = 0
+                self.player['farmer' + str(i)]['energy']  = 0
                 self.player['farmer' + str(i)]['water_right'] = dict()
                 self.player['farmer' + str(i)]['farms'] = dict()
                 
@@ -25,7 +26,8 @@ class players:
                 else:
                     self.player['farmer' + str(farmer_count)]  = dict()
                     self.player['farmer' + str(farmer_count)]['name']  = names[i]
-                    self.player['farmer' + str(farmer_count)]['money']  = names[i]
+                    self.player['farmer' + str(farmer_count)]['money']  = 0
+                    self.player['farmer' + str(farmer_count)]['energy']  = 0
                     self.player['farmer' + str(farmer_count)]['water_right'] = dict()
                     self.player['farmer' + str(farmer_count)]['farms'] = dict()
                     farmer_count = farmer_count + 1
@@ -72,9 +74,9 @@ class Boardgame:
             self.fish_level = 15 + ut.dieroll()
 
             
-            print("Initial Surface Water Tracker: " + str(self.sw_level))
-            print("Initial Groundwater Tracker: " + str(self.gw_level))
-            print("Initial Environmental Tracker: " + str(self.env_level))
+            print('Initial Surface Water Tracker: ' + str(self.sw_level))
+            print('Initial Groundwater Tracker: ' + str(self.gw_level))
+            print('Initial Environmental Tracker: ' + str(self.env_level))
             
         elif (self.mode == 'medium'):
             print('Setting up game in easy medium')
@@ -96,6 +98,7 @@ class Energy_Resources:
         self.energy_tabs = ut.energy_tabs        
 
     def Buy_Energy(self, portfolio, game):
+        #Calculates env. cost and dollar amount based on user requests
         
         tcost = 0
         envcost = 0
@@ -114,7 +117,7 @@ class Energy_Resources:
                         temp_e = (eunits - ecounter)
                         
                     envcost = envcost + (temp_e*self.energy_tabs[e][source]['env_cost'])
-                    if e == 'hydro':
+                    if e == 'hydro': # Hydro needs to be calculated differently because it depends on the fish pop
                         hydro_cost_lims = self.energy_tabs[e][source]['dollar_cost'].keys() 
                         hydro_cost_lims.sort(reverse=True)
                         for lim in hydro_cost_lims:
@@ -156,7 +159,7 @@ class PersonalCalc:
 #         if (self.gw_init == 30):
 #             return 30 + self.dieroll
 #         else:
-#             print ("N/A")
+#             print ('N/A')
 #
 #     def limit(self):
 #         return 100
