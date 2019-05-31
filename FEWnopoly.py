@@ -5,23 +5,28 @@ class players:
         self.player = dict()
         if roles == None: # Assigns random roles
             names = ut.shuffle_strings(names)
-            self.player['governor'] = names[0]
-            self.player['farmer1']  = names[1]
-            self.player['farmer2']  = names[2]
-            self.player['farmer3']  = names[3]
-            
+            self.player['governor'] = dict()
+            self.player['governor']['name'] = names[0]
+            self.player['governor']['money'] = 50
+            for i in range(1,4):
+                self.player['farmer' + str(i)]=dict()
+                self.player['farmer' + str(i)]['name']  = names[i]
+                self.player['farmer' + str(i)]['water right'] = dict()
+                
         else: #Respects the chosen roles by users
               # Will fail if words are misspelled. Need to fix.
             farmer_count = 1
             for i in range(len(names)):
                 if roles[i] == 'governor':
-                    self.player['governor'] = names[i]
+                    self.player['governor'] = dict()
+                    self.player['governor']['name'] = names[i]
                 else:
-                    self.player['farmer' + str(farmer_count)]  = names[i]
+                    self.player['farmer' + str(farmer_count)]  = dict()
+                    self.player['farmer' + str(farmer_count)]['name']  = names[i]
+                    self.player['farmer' + str(farmer_count)]['water right'] = dict()
                     farmer_count = farmer_count + 1
+        
 
-
-gw = 100
 
 class Boardgame:
     def __init__(self, mode='easy', players=None):

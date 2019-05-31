@@ -4,12 +4,11 @@ import random, json
 
 
 def shuffle_strings(data):
-    shuffle_data = []
-    for w in random.sample(data, len(data)):
-        shuffle_data.append(w)
-    return shuffle_data
-    
-    
+#    shuffle_data = []
+#    for w in random.sample(data, len(data)):
+#        shuffle_data.append(w)
+    return random.sample(data, len(data))
+        
 def dieroll():
     return random.randrange(1,6,1)
 def three_dieroll():
@@ -29,6 +28,18 @@ def init_event_cards(mode,ecards):
             event_cards.append(random.choice(list(ecards.keys())))
             
     return event_cards
+
+
+def init_farmers(players,inhe_cards):
+    
+    wr_cards = random.sample(list(inhe_cards.keys()),len(list(inhe_cards.keys())))
+    counter = 0
+    for player in players.keys():
+        if player != 'governor':
+            players[player]['water_right']['order'] = inhe_cards[wr_cards[counter]]['order']
+            players[player]['water_right']['volume'] = inhe_cards[wr_cards[counter]]['volume']
+            
+
 
 
 ## Read Json files with boardgame data

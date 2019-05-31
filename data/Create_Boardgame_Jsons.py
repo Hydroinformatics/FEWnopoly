@@ -21,8 +21,17 @@ fish_pop_table = {'Inf-20':{'max': float('Inf'), 'min':20, 'pop_rates':[5,5,5,4,
                   '3-1':{'max': 3, 'min':1, 'pop_rates':[-44,-39,-34,-29,-24,-19,-14,-9,-float('Inf'),-float('Inf')]},
                   'Fish pop range': ['49-45','44-40','39-35','34-30','29-25','24-20','19-15','14-10','9-5','4-1']}
 
+
+inheritance_cards = {1:{'order': 1, 'money': 100, 'volume': float('Inf')},
+                     2:{'order': 3, 'money': 110, 'volume': float('Inf')},
+                     3:{'order': 5, 'money': 125, 'volume': float('Inf')}
+        }
+
 with open('fish_pop_table.json', 'w') as fp:
     json.dump(fish_pop_table, fp)
     
 with open('event_cards.json', 'w') as fp:
     json.dump(event_cards, fp)
+    
+with open('inheritance cards.json', 'w') as fp:
+    json.dump(inheritance_cards, fp)

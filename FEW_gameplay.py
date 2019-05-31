@@ -8,15 +8,18 @@ import FEWnopoly
 # f1 = input("Enter Farmer 1's Name: ")
 # f2 = input("Enter Farmer 2's Name: ")
 # f3 = input("Enter Farmer 3's Name")
-# name = FEW_calc.players(gov, f1, f2, f3)
-# print("Governer: " + name.governor)
-# print("Farmer 1: " + name.farmer1)
-# print("Farmer 2: " + name.farmer2)
-# print("Farmer 3: " + name.farmer3)
-
+#players_names = [gov,f1,f2,f3] #Commenting out while in development
 players_names = ['Nick','Sammy','Andrew','Joel']
+
+#players = FEWnopoly.players(players_names) # Random assigment of roles
 players_roles = ['governor','farmer','farmer','farmer']
-players = FEWnopoly.players(players_names,players_roles)
+players = FEWnopoly.players(players_names,players_roles) #Specified assigment of roles
+
+#print("Governer: " + players.player['governor']['name'])
+#print("Farmer 1: " + players.player['farmer1']['name'])
+#print("Farmer 2: " + players.player['farmer2']['name'])
+#print("Farmer 3: " + players.player['farmer3']['name'])
+
 
 #m = input("Enter a mode; easy medium or hard: ") #Commenting out while in development
 m = 'easy'
