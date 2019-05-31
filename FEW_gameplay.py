@@ -52,10 +52,15 @@ while(check_bool == 1):
     
     if check_bool == 0:
         print 'Total energy cost ($): ' + str(tcost)
-        gov = input("Enter Cities' energy payment: ")
-        e_f1 = input('Enter ' + game.players['farmer1']['name'] + "'s" + ' energy payment: ')
-        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ')
-        e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ')
+#        gov = input("Enter Cities' energy payment: ") #Commenting out while in development
+#        e_f1 = input('Enter ' + game.players['farmer1']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
+#        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
+#        e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
+        
+        gov = 5
+        e_f1 = 5
+        e_f2 = 2
+        e_f3 = 3
         
         if gov + e_f1 + e_f2 + e_f3 < tcost:
             print 'Total payment is lower than total cost. Please adjust your inputs accordingly'
@@ -81,14 +86,13 @@ game.env_level = game.env_level + envcost
 game.check_status()
 
 
-
-
 # BUY, PLANT AND TRADE - PER FARMER
 
 for i in range(1,4):
-    
-    if game.players['farmer' + str(i)]['play_order'] == i:
-        print game.players['farmer' + str(i)]['name'] 
+    for player in game.players.keys():
+        if 'play_order' in game.players[player]:
+            if game.players[player]['play_order'] == i:
+                print game.players[player]['name'] 
 #    e_f1 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
 #    e_f2 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
 #    e_f3 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
