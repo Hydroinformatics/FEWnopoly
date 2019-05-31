@@ -1,4 +1,5 @@
 import FEW_utils as ut
+import sys
 
 class players:
     def __init__(self, names,roles=None):
@@ -86,6 +87,18 @@ class Boardgame:
             print('Setting up game in easy hard')
             return 0
 
+
+    def check_status(self):
+        
+        if self.gw_level < self.gw_lim or self.env_level < self.env_lim or self.fish_level < self.fish_lim:
+            print "Game Over"
+            sys.exit()
+        
+        if self.player['farmer1']['money'] <= 0 or self.player['farmer2']['money'] <= 0 or self.player['farmer3']['money'] <= 0:
+            print "Game Over"
+            sys.exit()
+        
+        
     def GW_track(self, a):
         self.gw_lim = gw - int(a)
         print(self.gw_init)

@@ -49,7 +49,8 @@ while(check_bool == 1):
         e_portfolio = {'coal': 12, 'hydro': 10, 'renewable': 5}
     
     if check_bool == 0:
-        gov = input('Enter Cities energy payment: ')
+        print 'Total energy cost ($): ' + str(tcost)
+        gov = input("Enter Cities' energy payment: ")
         e_f1 = input('Enter ' + game.players['farmer1']['name'] + "'s" + ' energy payment: ')
         e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ')
         e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ')
@@ -70,7 +71,10 @@ while(check_bool == 1):
 game.players['farmer1']['money'] = game.players['farmer1']['money'] - e_f1
 game.players['farmer2']['money'] = game.players['farmer2']['money'] - e_f2
 game.players['farmer3']['money'] = game.players['farmer3']['money'] - e_f3
-            
+          
+# Check status of the game
+game.check_status()
+  
 #Update env. degradation
 game.env_level = game.env_level - envcost
 
