@@ -1,3 +1,4 @@
+import FEW_utils as ut
 
 class players:
     def __init__(self, governor, farmer1, farmer2, farmer3):
@@ -10,27 +11,41 @@ class players:
 
 gw = 100
 
-class FEWnopoly:
+class Boardgame:
     def __init__(self, a, mode='easy'):
+        
+        # Setting up mode for the game: Needed for rules
         self.mode = mode.lower()
-        self.gw_init = 100
-        self.env_init = 0
-        self.sw_init = 0
-        self.gw_lim = 0
-        self.env_lim = 0
-        self.fish_init = 0
-        self.fish_lim = 15
+        
+        #Initiation of trackers used in the game
+        self.gw_init = 100 # groundwater tracker
+        self.sw_init = 0 # surface water tracker
+        self.env_init = 0 # environmental degradation tracker
+        self.fish_init = 0 # Salmon pop. tracker
+        
+        #Resources thresholds: If any of these is violated, everyone loses in the game
+        self.gw_lim = 0 # groundwater limit
+        self.env_lim = 0 # environmental degradation limit
+        self.fish_lim = 15 # Salmon pop. limit
+        
+        #Initiate the game & parameters based on selected mode
+        self.event_cards = None
+        self.fish_pop_table = ut.fish_pop_table
+        self.ini_setup()
+        
+        
         self.a = a
 
-    def select_mode(self):
+    def ini_setup(self):
         if (self.mode == 'easy'):
             print('Setting up game in easy mode')
-            self.gw_lim = 65 + dieroll()
+            self.event_cards = ut.init_event_cards(self.mode,ut.event_cards)
+            self.gw_lim = 65 + ut.dieroll()
             self.gw_init = 100
-            self.env_init = dieroll()
-            self.env_lim = 25 + dieroll()
-            self.sw_init = 14 + three_dieroll()
-            self.fish_init = 15 + dieroll()
+            self.env_init = ut.dieroll()
+            self.env_lim = 25 + ut.dieroll()
+            self.sw_init = 14 + ut.three_dieroll()
+            self.fish_init = 15 + ut.dieroll()
             self.fish_lim = 15
             
             print("Initial Surface Water Tracker: " + str(self.sw_init))

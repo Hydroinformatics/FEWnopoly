@@ -1,5 +1,6 @@
 
-import FEW_calc
+import numpy as np
+import FEWnopoly
 
 # Gameplay Setup
 
@@ -15,26 +16,27 @@ import FEW_calc
 
 # assign random roles?
 
-m = input("Enter a mode; easy medium or hard: ")
-setup = FEW_calc.Setup(m)
-setup.select_mode()
+#m = input("Enter a mode; easy medium or hard: ") #Commenting out while in development
+m = 'easy'
+game = FEWnopoly.Boardgame(m)
 
 
 # --------------------------------------------------------
 # ROUND 1
 
 # ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
-e = input("How many total energy units will all parties be purchasing this round?: ")
+#e = input("How many total energy units will all parties be purchasing this round?: ")#Commenting out while in development
+e = np.random.choice(range(0,10))
 buyenergy1 = FEW_calc.Energy(e)
 print(buyenergy1.Buy_Energy())
 
-a = input("how many gw units: ")
-usegw = FEW_calc.Setup(a)
-usegw.GW_track(a)
-
-a = input("how many gw units: ")
-usegw = FEW_calc.Setup(a)
-usegw.GW_track(a)
+#a = input("how many gw units: ")
+#usegw = FEW_calc.Setup(a)
+#usegw.GW_track(a)
+#
+#a = input("how many gw units: ")
+#usegw = FEW_calc.Setup(a)
+#usegw.GW_track(a)
 
 
 # playercal = FEW_calc.PersonalCalc()
