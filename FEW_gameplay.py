@@ -50,16 +50,27 @@ while(check_bool == 1):
     
     if check_bool == 0:
         gov = input('Enter Cities energy payment: ')
-        e_f1 = input('Enter ' + players.player['farmer1']['name'] + "'s" + ' energy payment: ')
-        e_f2 = input('Enter ' + players.player['farmer2']['name'] + "'s" + ' energy payment: ')
-        e_f3 = input('Enter ' + players.player['farmer3']['name'] + "'s" + ' energy payment: ')
+        e_f1 = input('Enter ' + game.players['farmer1']['name'] + "'s" + ' energy payment: ')
+        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ')
+        e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ')
         
         if gov + e_f1 + e_f2 + e_f3 < tcost:
             print 'Total payment is lower than total cost. Please adjust your inputs accordingly'
             check_bool = 1
+        
+#    adjust_port = input('Do you want to adjust your portfolio? (yes/no) ')
+#    if adjust_port.lower() == 'yes':
+#        #e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
+#        #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
+#        #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
+#        #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
+#        
     
-
-
+#Update players money
+game.players['farmer1']['money'] = game.players['farmer1']['money'] - e_f1
+game.players['farmer2']['money'] = game.players['farmer2']['money'] - e_f2
+game.players['farmer3']['money'] = game.players['farmer3']['money'] - e_f3
+            
 #Update env. degradation
 game.env_level = game.env_level - envcost
 
