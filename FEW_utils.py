@@ -35,10 +35,10 @@ def init_farmers(players,inhr_cards):
     counter = 0
     for player in players.keys():
         if player != 'governor':
-            players[player]['water_right']['money'] = inhr_cards[wr_cards[counter]]['money']
+            players[player]['money'] = inhr_cards[wr_cards[counter]]['money']
             players[player]['water_right']['order'] = inhr_cards[wr_cards[counter]]['order']
             players[player]['water_right']['volume'] = inhr_cards[wr_cards[counter]]['volume']
-            players[player]['water_right']['play_order'] = counter
+            players[player]['play_order'] = counter
     
     return players
             

@@ -38,7 +38,7 @@ check_bool = 1
 #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
 #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
 #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
-e_portfolio = {'coal': 20, 'hydro': 10, 'renewable': 5}
+e_portfolio = {'coal': 40, 'hydro': 5, 'renewable': 5}
 while(check_bool == 1):
 
     check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
@@ -48,7 +48,7 @@ while(check_bool == 1):
         #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
         #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
         #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
-        e_portfolio = {'coal': 12, 'hydro': 10, 'renewable': 5}
+        e_portfolio = {'coal': 5, 'hydro': 5, 'renewable': 5}
     
     if check_bool == 0:
         print 'Total energy cost ($): ' + str(tcost)
@@ -74,18 +74,21 @@ game.players['farmer1']['money'] = game.players['farmer1']['money'] - e_f1
 game.players['farmer2']['money'] = game.players['farmer2']['money'] - e_f2
 game.players['farmer3']['money'] = game.players['farmer3']['money'] - e_f3
           
+#Update env. degradation
+game.env_level = game.env_level + envcost
+
 # Check status of the game
 game.check_status()
 
-#Update env. degradation
-game.env_level = game.env_level - envcost
+
 
 
 # BUY, PLANT AND TRADE - PER FARMER
 
-
 for i in range(1,4):
-    print game.players['farmer' + str(i)]['play_order'] 
+    
+    if game.players['farmer' + str(i)]['play_order'] == i:
+        print game.players['farmer' + str(i)]['name'] 
 #    e_f1 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
 #    e_f2 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
 #    e_f3 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')

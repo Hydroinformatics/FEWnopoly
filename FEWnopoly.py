@@ -94,11 +94,11 @@ class Boardgame:
 
     def check_status(self):
         
-        if self.gw_level < self.gw_lim or self.env_level < self.env_lim or self.fish_level < self.fish_lim:
+        if self.gw_level < self.gw_lim or self.env_level > self.env_lim or self.fish_level < self.fish_lim:
             print "Game Over"
             sys.exit()
         
-        if self.player['farmer1']['money'] <= 0 or self.player['farmer2']['money'] <= 0 or self.player['farmer3']['money'] <= 0:
+        if self.players['farmer1']['money'] <= 0 or self.players['farmer2']['money'] <= 0 or self.players['farmer3']['money'] <= 0:
             print "Game Over"
             sys.exit()
         
@@ -149,7 +149,7 @@ class Energy_Resources:
                 check_bool = 1
                 break
                 
-        return check_bool, tcost, envcost
+        return check_bool, tcost, int(round(envcost))
     
     
                         
