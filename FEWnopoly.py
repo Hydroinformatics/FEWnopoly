@@ -1,18 +1,30 @@
 import FEW_utils as ut
 
 class players:
-    def __init__(self, governor, farmer1, farmer2, farmer3):
-        self.governor = governor
-        self.farmer1 = farmer1
-        self.farmer2 = farmer2
-        self.farmer3 = farmer3
+    def __init__(self, names,roles=None):
+        self.player = dict()
+        if roles == None: # Assigns random roles
+            names = ut.shuffle_strings(names)
+            self.player['governor'] = names[0]
+            self.player['farmer1']  = names[1]
+            self.player['farmer2']  = names[2]
+            self.player['farmer3']  = names[3]
+            
+        else: #Respects the chosen roles by users
+              # Will fail if words are misspelled. Need to fix.
+            farmer_count = 1
+            for i in range(len(names)):
+                if roles[i] == 'governor':
+                    self.player['governor'] = names[i]
+                else:
+                    self.player['farmer' + str(farmer_count)]  = names[i]
+                    farmer_count = farmer_count + 1
 
-# assign roles randomly?
 
 gw = 100
 
 class Boardgame:
-    def __init__(self, a, mode='easy'):
+    def __init__(self, mode='easy', players=None):
         
         # Setting up mode for the game: Needed for rules
         self.mode = mode.lower()
@@ -33,8 +45,8 @@ class Boardgame:
         self.fish_pop_table = ut.fish_pop_table
         self.ini_setup()
         
-        
-        self.a = a
+        # Add names of players and roles
+        self.players = players
 
     def ini_setup(self):
         if (self.mode == 'easy'):

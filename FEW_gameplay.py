@@ -14,11 +14,13 @@ import FEWnopoly
 # print("Farmer 2: " + name.farmer2)
 # print("Farmer 3: " + name.farmer3)
 
-# assign random roles?
+players_names = ['Nick','Sammy','Andrew','Joel']
+players_roles = ['governor','farmer','farmer','farmer']
+players = FEWnopoly.players(players_names,players_roles)
 
 #m = input("Enter a mode; easy medium or hard: ") #Commenting out while in development
 m = 'easy'
-game = FEWnopoly.Boardgame(m)
+game = FEWnopoly.Boardgame(m,players.player)
 
 
 # --------------------------------------------------------
