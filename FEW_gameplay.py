@@ -86,17 +86,49 @@ game.env_level = game.env_level + envcost
 game.check_status()
 
 # BUY, PLANT AND TRADE - PER FARMER
+play_order_rec = 4
+new_play_order = dict()
 for i in range(1,4):
     for player in game.players.keys():
         if 'play_order' in game.players[player]:
             if game.players[player]['play_order'] == i:
-                print game.players[player]['name'] 
-                land_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wants buy in this round: ')
-                crops_f = dict()
-                for crop in game.crops.keys():
-                    crops_f[crop] = input('Enter the amount of '+ crop + ' farms ' + game.players['farmer' + str(i)]['name'] + ' wants buy in this round: ')
+                new_play_order[player] = play_order_rec - i
+                check_bool = 1
+                owe_money = 0
+                owe_taxes = 5 #every farmer pays $5 regarless
                 
-                pipes_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wil buy in this round: ')
+                while(check_bool == 1):
+                    land_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wants buy in this round: ')
+                    owe_money = owe_money + land_f*10
+                    owe_taxes = owe_taxes + (game.players[player]['land'] + land_f)*2 #Land tax
+                    
+                    if game.players[player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
+                        if land_f <= 4:
+                            print "You don't have enough money to buy the requested resources. Try again."
+                        else:
+                            print "You can only buy a max. of four land tiles in a turn."
+                    else:
+                        check_bool = 0
+                        
+                    if check_bool == 0:
+                        crops_f = dict()
+                        needed_land = 0
+                        for crop in game.crops.keys():
+                            crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players['farmer' + str(i)]['name'] + ' wants buy in this round: ')
+                            owe_money = owe_money + crops_f[crop]*5
+                            needed_land = needed_land + (crops_f[crop]*1.0/3.0)
+                        
+                        if game.players[player]['money'] - (owe_money + owe_taxes) < 0:
+                            print "You don't have enough money to buy the requested resources. Try again."
+                            check_bool = 1
+                            
+                        if game.players[player]['land'] + land_f < needed_land:
+                            print "You don't have enough land to plant the requested crops. Try again."
+                            check_bool = 1
+                            
+                    
+                    
+                        pipes_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wil buy in this round: ')
                 
                 
 
