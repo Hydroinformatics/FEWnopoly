@@ -152,9 +152,7 @@ class Energy_Resources:
         return check_bool, tcost, int(round(envcost))
     
     
-                        
-
-
+    
 class PersonalCalc:
     def __init__(self):
         self.wr = None

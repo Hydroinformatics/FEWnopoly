@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import random, json
+import numpy as np
 
 def shuffle_strings(data):
 #    shuffle_data = []
@@ -33,12 +34,21 @@ def init_farmers(players,inhr_cards):
     
     wr_cards = random.sample(list(inhr_cards.keys()),len(list(inhr_cards.keys())))
     counter = 0
+    wr_seniority = []
     for player in players.keys():
         if player != 'governor':
             players[player]['money'] = inhr_cards[wr_cards[counter]]['money']
             players[player]['water_right']['order'] = inhr_cards[wr_cards[counter]]['order']
             players[player]['water_right']['volume'] = inhr_cards[wr_cards[counter]]['volume']
-            players[player]['play_order'] = counter+1
+            wr_seniority.append(inhr_cards[wr_cards[counter]]['order'])
+            counter = counter + 1
+            
+    play_order = np.argsort(wr_seniority) #index of sort wr orders
+    counter = 0
+    for player in players.keys():
+        if player != 'governor':
+            players[player]['play_order'] = play_order[counter]+1
+            counter = counter + 1
     
     return players
             

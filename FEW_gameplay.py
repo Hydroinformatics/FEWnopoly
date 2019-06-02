@@ -85,9 +85,7 @@ game.env_level = game.env_level + envcost
 # Check status of the game
 game.check_status()
 
-
 # BUY, PLANT AND TRADE - PER FARMER
-
 for i in range(1,4):
     for player in game.players.keys():
         if 'play_order' in game.players[player]:
