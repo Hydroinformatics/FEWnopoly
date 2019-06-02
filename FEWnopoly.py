@@ -47,7 +47,9 @@ class Boardgame:
         # Setting up mode for the game: Needed for rules
         self.mode = mode.lower()
         
-        # Set array of allowed crops
+        # Set cities and crops data
+        self.crops = ut.crops_table
+        self.cities = ut.cities_table 
         
         #Initiation of trackers used in the game
         self.gw_level = 100 # groundwater tracker

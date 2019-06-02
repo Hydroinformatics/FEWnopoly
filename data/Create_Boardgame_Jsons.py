@@ -37,6 +37,9 @@ cities = {'Pendleton':{'crops':{'alfalfa': 16, 'potatos':11, 'melon':10, 'wheat'
           'Hermiston':{'crops':{'alfalfa': 13, 'potatos':11, 'melon':12, 'wheat':8}, 'tax_money': 15, 'energy': 9, 'water': 1, 'food_needs': 8, 'total_food_needs': 14}}          
                       
 
+with open('crops_data.json', 'w') as fp:
+    json.dump(crops, fp)
+
 with open('cities_data.json', 'w') as fp:
     json.dump(cities, fp)
 
