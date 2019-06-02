@@ -54,6 +54,9 @@ def init_farmers(players,inhr_cards):
             
 
 ## Read Json files with boardgame data
+with open('./data/cities_data.json', 'r') as f:
+    cities_table = json.load(f)    
+
 with open('./data/event_cards.json', 'r') as f:
     event_cards = json.load(f)
     

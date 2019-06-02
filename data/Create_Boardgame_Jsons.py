@@ -32,8 +32,13 @@ energy_tabs = {'coal':{1:{'max_capacity': 15, 'env_cost': 1.0/3, 'dollar_cost': 
                'hydro':{1:{'max_capacity': 24, 'env_cost': 1.0/12, 'dollar_cost': hydro_cost}}}
 
 
-               
+crops = {'alfalfa': 2, 'potatos': 1, 'melon': 1, 'wheat': 0}
+cities = {'Pendleton':{'crops':{'alfalfa': 16, 'potatos':11, 'melon':10, 'wheat':8}, 'tax_money': 15, 'energy': 9, 'water': 1, 'food_needs': 8, 'total_food_needs': 14},
+          'Hermiston':{'crops':{'alfalfa': 13, 'potatos':11, 'melon':12, 'wheat':8}, 'tax_money': 15, 'energy': 9, 'water': 1, 'food_needs': 8, 'total_food_needs': 14}}          
                       
+
+with open('cities_data.json', 'w') as fp:
+    json.dump(cities, fp)
 
 with open('fish_pop_table.json', 'w') as fp:
     json.dump(fish_pop_table, fp)

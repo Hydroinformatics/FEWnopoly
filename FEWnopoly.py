@@ -14,6 +14,7 @@ class players:
                 self.player['farmer' + str(i)]['name']  = names[i]
                 self.player['farmer' + str(i)]['money']  = 0
                 self.player['farmer' + str(i)]['land']  = 0
+                self.player['farmer' + str(i)]['own_tax']  = 0
                 self.player['farmer' + str(i)]['energy']  = 0
                 self.player['farmer' + str(i)]['play_order']  = None
                 self.player['farmer' + str(i)]['water_right'] = dict()
@@ -31,6 +32,7 @@ class players:
                     self.player['farmer' + str(farmer_count)]['name']  = names[i]
                     self.player['farmer' + str(farmer_count)]['money']  = 0
                     self.player['farmer' + str(farmer_count)]['land']  = 0
+                    self.player['farmer' + str(farmer_count)]['own_tax']  = 0
                     self.player['farmer' + str(farmer_count)]['energy']  = 0
                     self.player['farmer' + str(farmer_count)]['play_order']  = None
                     self.player['farmer' + str(farmer_count)]['water_right'] = dict()
@@ -44,6 +46,8 @@ class Boardgame:
         
         # Setting up mode for the game: Needed for rules
         self.mode = mode.lower()
+        
+        # Set array of allowed crops
         
         #Initiation of trackers used in the game
         self.gw_level = 100 # groundwater tracker

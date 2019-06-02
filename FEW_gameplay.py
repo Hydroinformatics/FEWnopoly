@@ -91,9 +91,13 @@ for i in range(1,4):
         if 'play_order' in game.players[player]:
             if game.players[player]['play_order'] == i:
                 print game.players[player]['name'] 
-#    e_f1 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
-#    e_f2 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
-#    e_f3 = input('Enter ' + game.players['farmer' + str(i)]['name'] + "'s" + ' energy payment: ')
+                land_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wil buy in this round: ')
+                for crop in crops:
+                pipes_f = input('Enter the amount of  ' + game.players['farmer' + str(i)]['name'] + ' wil buy in this round: ')
+                pipes_f = input('Enter the amount of land ' + game.players['farmer' + str(i)]['name'] + ' wil buy in this round: ')
+                
+                
+
     
 
 
