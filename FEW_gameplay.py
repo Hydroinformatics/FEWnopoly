@@ -43,7 +43,7 @@ while(check_bool == 1):
 
     check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
     if check_bool == 1:
-        print 'Invalid total of energy units requested. More energy units than available capacity of sources'
+        print('Invalid total of energy units requested. More energy units than available capacity of sources')
         #e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
         #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
         #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
@@ -51,7 +51,7 @@ while(check_bool == 1):
         e_portfolio = {'coal': 5, 'hydro': 5, 'renewable': 5}
     
     if check_bool == 0:
-        print 'Total energy cost ($): ' + str(tcost)
+        print('Total energy cost ($): ' + str(tcost))
 #        gov = input("Enter Cities' energy payment: ") #Commenting out while in development
 #        e_f1 = input('Enter ' + game.players['farmer1']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
 #        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
@@ -63,7 +63,7 @@ while(check_bool == 1):
         e_f3 = 3
         
         if gov + e_f1 + e_f2 + e_f3 < tcost:
-            print 'Total payment is lower than total cost. Please adjust your inputs accordingly'
+            print('Total payment is lower than total cost. Please adjust your inputs accordingly')
             check_bool = 1
         
 #    adjust_port = input('Do you want to adjust your portfolio? (yes/no) ')
@@ -104,9 +104,9 @@ for i in range(1,4):
                     
                     if game.players[player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
                         if land_f <= 4:
-                            print "You don't have enough money to buy the requested resources. Try again."
+                            print("You don't have enough money to buy the requested resources. Try again.")
                         else:
-                            print "You can only buy a max. of four land tiles in a turn."
+                            print("You can only buy a max. of four land tiles in a turn.")
                     else:
                         check_bool = 0
                         
@@ -119,11 +119,11 @@ for i in range(1,4):
                             needed_land = needed_land + (crops_f[crop]*1.0/3.0)
                         
                         if game.players[player]['money'] - (owe_money + owe_taxes) < 0:
-                            print "You don't have enough money to buy the requested resources. Try again."
+                            print("You don't have enough money to buy the requested resources. Try again.")
                             check_bool = 1
                             
                         if game.players[player]['land'] + land_f < needed_land:
-                            print "You don't have enough land to plant the requested crops. Try again."
+                            print("You don't have enough land to plant the requested crops. Try again.")
                             check_bool = 1
                             
                     

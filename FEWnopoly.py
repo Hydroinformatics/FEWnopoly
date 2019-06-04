@@ -101,11 +101,11 @@ class Boardgame:
     def check_status(self):
         
         if self.gw_level < self.gw_lim or self.env_level > self.env_lim or self.fish_level < self.fish_lim:
-            print "Game Over"
+            print("Game Over")
             sys.exit()
         
         if self.players['farmer1']['money'] <= 0 or self.players['farmer2']['money'] <= 0 or self.players['farmer3']['money'] <= 0:
-            print "Game Over"
+            print("Game Over")
             sys.exit()
         
         
