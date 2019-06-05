@@ -99,15 +99,7 @@ for i in range(1,10):
             board[i,ii] = 1
 
 
-board_nodes = dict()
-
-#board_nodes[0] = [[3,4],[0,0]]
-#board_nodes[1] = [[2,3],[0,1]]
-#
-#for i in board_nodes[1][0]:
-#    for ii in board_nodes[1][1]:
-#        print board[i,ii]
-    
+board_nodes = dict()    
 count = 0
 for i in range(1,10):
     for ii in range(1,14):

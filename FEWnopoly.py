@@ -19,6 +19,7 @@ class players:
                 self.player['farmer' + str(i)]['play_order']  = None
                 self.player['farmer' + str(i)]['water_right'] = dict()
                 self.player['farmer' + str(i)]['farms'] = dict()
+                self.player['farmer' + str(i)]['land_tiles'] = []
                 
         else: #Respects the chosen roles by users
               # Will fail if words are misspelled. Need to fix.
@@ -37,6 +38,7 @@ class players:
                     self.player['farmer' + str(farmer_count)]['play_order']  = None
                     self.player['farmer' + str(farmer_count)]['water_right'] = dict()
                     self.player['farmer' + str(farmer_count)]['farms'] = dict()
+                    self.player['farmer' + str(farmer_count)]['land_tiles'] = []
                     farmer_count = farmer_count + 1
         
 
@@ -174,8 +176,9 @@ class FarmersActions:
         self.pipes_f = 0
         self.wells_f = 0
         self.crops_f = dict()
+        self.land_tiles = []
         
-    
+        
     def BuyLand(self, game):
         check_bool = 1
 
@@ -183,24 +186,50 @@ class FarmersActions:
             owe_money = self.owe_money
             owe_taxes = self.owe_taxes
             
-            land_f = input('Enter the amount of land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
-            while not land_f:
-                print "That wasn't a number!"
-                land_f = input('Enter the amount of land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
-                
-            owe_money = owe_money + land_f*10
-            owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
+            land_bool = 0
             
-            if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
-                if land_f <= 4:
-                    print("You don't have enough money to buy the requested resources. Try again.")
+            while land_bool == 0:
+                land_buy = str(raw_input('Does ' + game.players[self.player]['name'] + ' wants buy land in this round? [yes/no] '))
+                if land_buy.lower() == 'yes' or land_buy.lower() == 'no':
+                    land_bool = 1
+                    
                 else:
-                    print("You can only buy a max. of four land tiles in a turn.")
+                    print("Please reply 'yes' or 'no'.")
+                
+            if land_buy.lower() == 'yes':
+                
+                land_int = raw_input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                while land_int == '':
+                    if land_int == '':
+                        print("That wasn't a number!")
+                    land_int = raw_input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                    
+                    if land_int != '':
+                        if int(land_int) not in game.board_nodes.keys():
+                            print("Please enter a valid intersection ID.")
+                
+                land_int = int(land_int)
+                land_f = 0 
+                for i in game.board_nodes[land_int][0]:
+                    for ii in game.board_nodes[land_int][1]:
+                        print game.board[i,ii] 
+                
+                owe_money = owe_money + land_f*10
+                owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
+                
+                if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
+                    if land_f <= 4:
+                        print("You don't have enough money to buy the requested resources. Try again.")
+                    else:
+                        print("You can only buy a max. of four land tiles in a turn.")
+                else:
+                    self.land_f = land_f
+                    self.owe_money = self.owe_money + self.land_f*10
+                    self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
+                    check_bool = 0
             else:
-                self.land_f = land_f
-                self.owe_money = self.owe_money + self.land_f*10
-                self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
                 check_bool = 0
+                
                 
     def PlantCrops(self, game):
         check_bool = 1
@@ -212,12 +241,13 @@ class FarmersActions:
             needed_land = 0
             
             for crop in game.crops.keys():
-                crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
                 
-                while not crops_f[crop]:
+                while crops_f[crop] == '':
                     print "That wasn't a number!"
-                    crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
-                    
+                    crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                
+                crops_f[crop] = int(crops_f[crop])
                 owe_money = owe_money + crops_f[crop]*5
                 needed_land = needed_land + (crops_f[crop]*1.0/3.0)
                 
@@ -240,11 +270,12 @@ class FarmersActions:
             owe_money = self.owe_money
             owe_taxes = self.owe_taxes
             
-            pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
-            while not pipes_f:
+            pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            while pipes_f =='':
                 print "That wasn't a number!"
-                pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
-                
+                pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            
+            pipes_f = int(pipes_f)
             owe_money = owe_money + pipes_f*10
                 
             if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:
@@ -263,11 +294,12 @@ class FarmersActions:
             owe_money = self.owe_money
             owe_taxes = self.owe_taxes
             
-            wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
-            while not wells_f:
+            wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            while wells_f == '':
                 print "That wasn't a number!"
-                wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+                wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
                 
+            wells_f = int(wells_f)
             owe_money = owe_money + wells_f*20
             
             if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:

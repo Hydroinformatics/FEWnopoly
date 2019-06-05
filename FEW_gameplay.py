@@ -95,6 +95,7 @@ for i in range(1,4):
                 new_play_order[player] = play_order_rec - i
                 
                 farmer_actions = FEWnopoly.FarmersActions(player)
+                
                 farmer_actions.BuyLand(game)
                 farmer_actions.PlantCrops(game)
                 farmer_actions.BuyPipes(game)
