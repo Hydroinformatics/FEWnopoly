@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import FEW_utils as ut
 import sys
+input = raw_input
 
 class players:
     def __init__(self, names,roles=None):
@@ -167,7 +170,6 @@ class Energy_Resources:
     
     
 
-
 class FarmersActions:
     def __init__(self, player):
         self.player = player
@@ -191,7 +193,7 @@ class FarmersActions:
             land_bool = 0
             
             while land_bool == 0:
-                land_buy = str(raw_input('Does ' + game.players[self.player]['name'] + ' wants buy land in this round? [yes/no] '))
+                land_buy = str(input('Does ' + game.players[self.player]['name'] + ' wants buy land in this round? [yes/no] '))
                 if land_buy.lower() == 'yes' or land_buy.lower() == 'no':
                     land_bool = 1
                     
@@ -200,11 +202,11 @@ class FarmersActions:
                 
             if land_buy.lower() == 'yes':
                 
-                land_int = raw_input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
                 while land_int == '':
                     if land_int == '':
                         print("That wasn't a number!")
-                    land_int = raw_input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                    land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
                     
                     if land_int != '':
                         if int(land_int) not in game.board_nodes.keys():
@@ -243,11 +245,11 @@ class FarmersActions:
             needed_land = 0
             
             for crop in game.crops.keys():
-                crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
                 
                 while crops_f[crop] == '':
                     print("That wasn't a number!")
-                    crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                    crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
                 
                 crops_f[crop] = int(crops_f[crop])
                 owe_money = owe_money + crops_f[crop]*5
@@ -272,10 +274,10 @@ class FarmersActions:
             owe_money = self.owe_money
             owe_taxes = self.owe_taxes
             
-            pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while pipes_f =='':
                 print("That wasn't a number!")
-                pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+                pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             
             pipes_f = int(pipes_f)
             owe_money = owe_money + pipes_f*10
@@ -296,10 +298,10 @@ class FarmersActions:
             owe_money = self.owe_money
             owe_taxes = self.owe_taxes
             
-            wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while wells_f == '':
                 print("That wasn't a number!")
-                wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+                wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
                 
             wells_f = int(wells_f)
             owe_money = owe_money + wells_f*20
