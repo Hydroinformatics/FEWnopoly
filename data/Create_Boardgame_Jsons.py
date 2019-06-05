@@ -2,6 +2,7 @@
 
 # Create Json files needed for game
 import json
+import numpy as np
 
 event_cards = {'Onion Blight':'All onion farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
               'Potatos Blight':'All potato farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
@@ -54,3 +55,49 @@ with open('inheritance_cards.json', 'w') as fp:
     
 with open('energy_tabs.json', 'w') as fp:
     json.dump(energy_tabs, fp)
+    
+    
+    
+#%%    
+board = np.zeros((10,14))
+
+#Water 
+board[3,0] = 2
+for i in range(1,4):
+    board[2,i] = 2
+    
+for i in range(4,9):
+    board[1,i] = 2 
+board[0,9] = 2
+
+#Cities
+board[2,7] = 3
+board[4,10] = 3
+
+#Ag. Land
+board[6,10] = 1
+cell_ind = [[9,10],[4,12],[1,13],[0,12],[1,11],[1,5],[2,5],[3,4],[3,3]]
+
+for i in range(1,10):
+    for ii in range(cell_ind[i-1][0],cell_ind[i-1][1]+1):
+        if board[i,ii] == 0:
+            board[i,ii] = 1
+
+
+board_nodes = dict()
+
+#board_nodes[0] = [[3,4],[0,0]]
+#board_nodes[1] = [[2,3],[0,1]]
+#
+#for i in board_nodes[1][0]:
+#    for ii in board_nodes[1][1]:
+#        print board[i,ii]
+    
+count = 0
+for i in range(1,10):
+    for ii in range(1,14):
+        
+        if board[i-1,ii-1] == 1 or board[i-1,ii] == 1 or board[i,ii-1] == 1 or board[i,ii] == 1:
+            board_nodes[count] = [[i-1,i],[ii-1,ii]]
+            count = count + 1
+        

@@ -47,6 +47,10 @@ class Boardgame:
         # Setting up mode for the game: Needed for rules
         self.mode = mode.lower()
         
+        # Set gameboard
+        self.board = ut.board
+        self.board_nodes = ut.board_nodes
+        
         # Set cities and crops data
         self.crops = ut.crops_table
         self.cities = ut.cities_table 
@@ -158,7 +162,116 @@ class Energy_Resources:
         return check_bool, tcost, int(round(envcost))
     
     
+
+
+class FarmersActions:
+    def __init__(self, player):
+        self.player = player
+        self.owe_money = 0
+        self.owe_taxes = 5 #every farmer pays $5 regarless
+        
+        self.land_f = 0
+        self.pipes_f = 0
+        self.wells_f = 0
+        self.crops_f = dict()
+        
     
+    def BuyLand(self, game):
+        check_bool = 1
+
+        while(check_bool == 1):
+            owe_money = self.owe_money
+            owe_taxes = self.owe_taxes
+            
+            land_f = input('Enter the amount of land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+            if len(land_f) == 0:
+                land_f = 0
+            owe_money = owe_money + land_f*10
+            owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
+            
+            if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
+                if land_f <= 4:
+                    print("You don't have enough money to buy the requested resources. Try again.")
+                else:
+                    print("You can only buy a max. of four land tiles in a turn.")
+            else:
+                self.land_f = land_f
+                self.owe_money = self.owe_money + self.land_f*10
+                self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
+                check_bool = 0
+                
+    def PlantCrops(self, game):
+        check_bool = 1
+
+        while(check_bool == 1):
+            owe_money = self.owe_money
+            owe_taxes = self.owe_taxes
+            crops_f = dict()
+            needed_land = 0
+            
+            for crop in game.crops.keys():
+                crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                if len(crops_f[crop]) == 0:
+                    crops_f[crop] = 0
+                owe_money = owe_money + crops_f[crop]*5
+                needed_land = needed_land + (crops_f[crop]*1.0/3.0)
+                
+                if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0 and game.players[self.player]['land'] + self.land_f < needed_land:
+                    if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:
+                        print("You don't have enough money to buy the requested resources. Try again.")
+                    else:
+                        print("You don't have enough land to plant the requested crops. Try again.")
+                    check_bool = 1
+                else:
+                    self.owe_money = self.owe_money + owe_money
+                    self.crops_f = crops_f
+                    check_bool = 0
+                    
+                    
+    def BuyPipes(self, game):
+        check_bool = 1
+        
+        while(check_bool == 1):
+            owe_money = self.owe_money
+            owe_taxes = self.owe_taxes
+            
+            pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            if len(pipes_f) == 0:
+                pipes_f = 0
+            owe_money = owe_money + pipes_f*10
+                
+            if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:
+                print("You don't have enough money to buy the requested resources. Try again.")
+                check_bool = 1
+            else:
+                self.pipes_f = pipes_f
+                self.owe_money = self.owe_money + owe_money
+                check_bool = 0
+                
+    def BuyWells(self, game):
+        check_bool = 1
+        
+        while(check_bool == 1):
+            owe_money = self.owe_money
+            owe_taxes = self.owe_taxes
+            
+            wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+            if len(wells_f) == 0:
+                wells_f = 0
+                
+            owe_money = owe_money + wells_f*20
+            
+            if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:
+                print("You don't have enough money to buy the requested resources. Try again.")
+                check_bool = 1
+            else:
+                self.wells_f = wells_f
+                self.owe_money = self.owe_money + owe_money
+                check_bool = 0
+        
+
+
+
 class PersonalCalc:
     def __init__(self):
         self.wr = None
@@ -166,8 +279,7 @@ class PersonalCalc:
     def MoneyLoss(self, gamestate, invest):
         loss = gamestate.energy - invest
         return loss
-        
-        
+          
 # class GW:
 #     def __init__(self, r):
 #         self.dieroll = None
