@@ -150,7 +150,7 @@ class Energy_Resources:
                         hydro_cost_lims = list(self.energy_tabs[e][source]['dollar_cost'].keys()) 
                         hydro_cost_lims.sort(reverse=True)
                         for lim in hydro_cost_lims:
-                            if game.fish_level >= lim:
+                            if game.fish_level >= int(lim):
                                 tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'][lim])
                     else:
                         tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'])
