@@ -117,6 +117,8 @@ class Boardgame:
             print("Game Over")
             sys.exit()
         
+    
+    def set_surface_water_level(self):
         
     def GW_track(self, a):
         self.gw_lim = gw - int(a)
@@ -124,7 +126,13 @@ class Boardgame:
 
 
 
-
+class DrawEventCard:
+    def __init__(self):
+        #self.event_cards = ecards
+    
+    def EventActions(self, ecard):
+        
+        
 class Energy_Resources:
     def __init__(self):
         self.energy_tabs = ut.energy_tabs        

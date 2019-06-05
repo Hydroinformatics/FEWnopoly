@@ -27,12 +27,14 @@ m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
+draw_ecard = FEWnopoly.DrawEventCard()
+
 # --------------------------------------------------------
 # ROUND counter
 
 rounds = 0
 
-# ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
+# Step 1: ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
 
 check_bool = 1
 #e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
@@ -86,7 +88,7 @@ game.env_level = game.env_level + envcost
 # Check status of the game
 game.check_status()
 
-# BUY, PLANT AND TRADE - PER FARMER
+# Step 2: BUY, PLANT AND TRADE - PER FARMER
 play_order_rec = 4
 new_play_order = dict()
 for i in range(1,4):
@@ -112,7 +114,10 @@ for i in range(1,4):
                 
                 
 
+#Step 3: Set Surface water level   
                     
+#Step 4: Draw event card
+draw_ecard.EventActions(ecard)
                 
                 
 

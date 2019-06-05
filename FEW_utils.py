@@ -11,6 +11,7 @@ def shuffle_strings(data):
         
 def dieroll():
     return random.randrange(1,6,1)
+
 def three_dieroll():
     return random.randrange(1, 6, 1) + random.randrange(1, 6, 1) + random.randrange(1, 6, 1)
 
