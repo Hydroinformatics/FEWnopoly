@@ -99,6 +99,7 @@ for i in range(1,10):
             board[i,ii] = 1
 
 
+# Board nodes = intersection points for water rights
 board_nodes = dict()    
 count = 0
 for i in range(1,10):
