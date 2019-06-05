@@ -57,7 +57,7 @@ while(check_bool == 1):
 #        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
 #        e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
         
-        gov = 5
+        gov = 20
         e_f1 = 5
         e_f2 = 2
         e_f3 = 3

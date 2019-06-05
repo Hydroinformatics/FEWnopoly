@@ -149,9 +149,11 @@ class Energy_Resources:
                     if e == 'hydro': # Hydro needs to be calculated differently because it depends on the fish pop
                         hydro_cost_lims = list(self.energy_tabs[e][source]['dollar_cost'].keys()) 
                         hydro_cost_lims.sort(reverse=True)
+                        #print hydro_cost_lims
                         for lim in hydro_cost_lims:
                             if game.fish_level >= int(lim):
                                 tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'][lim])
+                                break
                     else:
                         tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'])
                     
