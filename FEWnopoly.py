@@ -212,7 +212,7 @@ class FarmersActions:
                 land_f = 0 
                 for i in game.board_nodes[land_int][0]:
                     for ii in game.board_nodes[land_int][1]:
-                        print game.board[i,ii] 
+                        print(game.board[i,ii])
                 
                 owe_money = owe_money + land_f*10
                 owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
@@ -244,7 +244,7 @@ class FarmersActions:
                 crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
                 
                 while crops_f[crop] == '':
-                    print "That wasn't a number!"
+                    print("That wasn't a number!")
                     crops_f[crop] = raw_input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
                 
                 crops_f[crop] = int(crops_f[crop])
@@ -272,7 +272,7 @@ class FarmersActions:
             
             pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while pipes_f =='':
-                print "That wasn't a number!"
+                print("That wasn't a number!")
                 pipes_f = raw_input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             
             pipes_f = int(pipes_f)
@@ -296,7 +296,7 @@ class FarmersActions:
             
             wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while wells_f == '':
-                print "That wasn't a number!"
+                print("That wasn't a number!")
                 wells_f = raw_input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
                 
             wells_f = int(wells_f)
