@@ -184,8 +184,10 @@ class FarmersActions:
             owe_taxes = self.owe_taxes
             
             land_f = input('Enter the amount of land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
-            if len(land_f) == 0:
-                land_f = 0
+            while not land_f:
+                print "That wasn't a number!"
+                land_f = input('Enter the amount of land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                
             owe_money = owe_money + land_f*10
             owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
             
@@ -211,8 +213,11 @@ class FarmersActions:
             
             for crop in game.crops.keys():
                 crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
-                if len(crops_f[crop]) == 0:
-                    crops_f[crop] = 0
+                
+                while not crops_f[crop]:
+                    print "That wasn't a number!"
+                    crops_f[crop] = input('Enter the amount of '+ crop + "'s farms " + game.players[self.player]['name'] + ' wants buy in this round: ')
+                    
                 owe_money = owe_money + crops_f[crop]*5
                 needed_land = needed_land + (crops_f[crop]*1.0/3.0)
                 
@@ -236,8 +241,10 @@ class FarmersActions:
             owe_taxes = self.owe_taxes
             
             pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
-            if len(pipes_f) == 0:
-                pipes_f = 0
+            while not pipes_f:
+                print "That wasn't a number!"
+                pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
+                
             owe_money = owe_money + pipes_f*10
                 
             if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0:
@@ -248,6 +255,7 @@ class FarmersActions:
                 self.owe_money = self.owe_money + owe_money
                 check_bool = 0
                 
+                
     def BuyWells(self, game):
         check_bool = 1
         
@@ -256,8 +264,9 @@ class FarmersActions:
             owe_taxes = self.owe_taxes
             
             wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
-            if len(wells_f) == 0:
-                wells_f = 0
+            while not wells_f:
+                print "That wasn't a number!"
+                wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
                 
             owe_money = owe_money + wells_f*20
             
