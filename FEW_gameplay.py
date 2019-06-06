@@ -27,7 +27,7 @@ m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
-draw_ecard = FEWnopoly.DrawEventCard()
+#draw_ecard = FEWnopoly.DrawEventCard()
 
 # --------------------------------------------------------
 # ROUND counter
@@ -35,13 +35,18 @@ draw_ecard = FEWnopoly.DrawEventCard()
 rounds = 0
 
 # Step 1: ENERGY PORTFOLIO---PURCHASE ENERGY COLLECTIVELY
+check_bool = 1#check boolean [0=no error, 1=error] in case there is user input errors
 
-check_bool = 1
 #e_coal = input('How many total energy units of coal will all parties be purchasing this round?: ')#Commenting out while in development
 #e_hydro = input('How many total energy units of hydropower will all parties be purchasing this round?: ')#Commenting out while in development
 #e_rewble = input('How many total energy units of renewables will all parties be purchasing this round?: ')#Commenting out while in development
 #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
-e_portfolio = {'coal': 40, 'hydro': 5, 'renewable': 5}
+
+# Energy portfolio with error in requested energy from coal (ie. more than max. capacity) 
+# Used to verify that the error is capture by the code.
+e_portfolio = {'coal': 40, 'hydro': 5, 'renewable': 5} 
+
+
 while(check_bool == 1):
 
     check_bool, tcost, envcost = energy.Buy_Energy(e_portfolio, game)
@@ -60,6 +65,7 @@ while(check_bool == 1):
 #        e_f2 = input('Enter ' + game.players['farmer2']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
 #        e_f3 = input('Enter ' + game.players['farmer3']['name'] + "'s" + ' energy payment: ') #Commenting out while in development
         
+        #Hypothetical distribution of energy costs
         gov = 20
         e_f1 = 5
         e_f2 = 2
@@ -77,12 +83,12 @@ while(check_bool == 1):
 #        #e_portfolio = {'coal': e_coal, 'hydro': e_hydro, 'renewable': e_rewble}
 #        
     
-#Update players money
+#Update players money after investing in energy portfolio
 game.players['farmer1']['money'] = game.players['farmer1']['money'] - e_f1
 game.players['farmer2']['money'] = game.players['farmer2']['money'] - e_f2
 game.players['farmer3']['money'] = game.players['farmer3']['money'] - e_f3
           
-#Update env. degradation
+#Update env. degradation based on energy portfolio
 game.env_level = game.env_level + envcost
 
 # Check status of the game
@@ -95,7 +101,7 @@ for i in range(1,4):
     for player in game.players.keys():
         if 'play_order' in game.players[player]:
             if game.players[player]['play_order'] == i:
-                new_play_order[player] = play_order_rec - i
+                new_play_order[player] = play_order_rec - i # Reverts the order of play for the next round
                 
                 farmer_actions = FEWnopoly.FarmersActions(player)
                 
@@ -117,7 +123,7 @@ for i in range(1,4):
 #Step 3: Set Surface water level   
                     
 #Step 4: Draw event card
-draw_ecard.EventActions(ecard)
+#draw_ecard.EventActions(ecard)
                 
                 
 

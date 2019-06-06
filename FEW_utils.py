@@ -110,3 +110,17 @@ for i in range(1,10):
             board_nodes[count] = [[i-1,i],[ii-1,ii]]
             count = count + 1
         
+
+
+#import matplotlib.pyplot as plt
+#plt.rcParams['text.color'] = 'white'
+##plt.pcolor(np.flipud(board), edgecolors='w', linewidths=2)
+#plt.pcolor(board, edgecolors='w', linewidths=2)
+#for j in board_nodes.keys():
+##for i in board_nodes[j][0]:
+###        for ii in board_nodes[j][1]:
+##
+#    plt.plot(board_nodes[j][1][1], board_nodes[j][0][1],'ro')
+#    plt.text(board_nodes[j][1][1], board_nodes[j][0][1], str(j)) 
+##    
+#plt.show()

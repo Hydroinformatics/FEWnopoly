@@ -2,7 +2,8 @@
 
 import FEW_utils as ut
 import sys
-input = raw_input
+if sys.version_info[0] < 3:
+    input = raw_input
 
 class players:
     def __init__(self, names,roles=None):
@@ -45,7 +46,7 @@ class players:
                     farmer_count = farmer_count + 1
         
 
-
+#%%
 class Boardgame:
     def __init__(self, mode='easy', players=None):
         
@@ -118,21 +119,21 @@ class Boardgame:
             sys.exit()
         
     
-    def set_surface_water_level(self):
+    #def set_surface_water_level(self):
         
     def GW_track(self, a):
         self.gw_lim = gw - int(a)
         print(self.gw_init)
 
 
-
-class DrawEventCard:
-    def __init__(self):
-        #self.event_cards = ecards
-    
-    def EventActions(self, ecard):
+#%%
+#class DrawEventCard:
+#    def __init__(self):
+#        #self.event_cards = ecards
+#    
+#    def EventActions(self, ecard):
         
-        
+#%%        
 class Energy_Resources:
     def __init__(self):
         self.energy_tabs = ut.energy_tabs        
@@ -140,9 +141,9 @@ class Energy_Resources:
     def Buy_Energy(self, portfolio, game):
         #Calculates env. cost and dollar amount based on user requests
         
-        tcost = 0
-        envcost = 0
-        check_bool = 0
+        tcost = 0 #monetary cost
+        envcost = 0 #enviromental cost
+        check_bool = 0 #check boolean [0=no error, 1=error] in case there is user input errors
         
         for e in portfolio.keys():
             eunits = portfolio[e]
@@ -160,9 +161,8 @@ class Energy_Resources:
                     if e == 'hydro': # Hydro needs to be calculated differently because it depends on the fish pop
                         hydro_cost_lims = list(self.energy_tabs[e][source]['dollar_cost'].keys()) 
                         hydro_cost_lims.sort(reverse=True)
-                        #print hydro_cost_lims
                         for lim in hydro_cost_lims:
-                            if game.fish_level >= int(lim):
+                            if game.fish_level >= int(lim): #Uses the lower limit of the fish pop. levels to find the cost of hydro
                                 tcost = tcost + (temp_e*self.energy_tabs[e][source]['dollar_cost'][lim])
                                 break
                     else:
@@ -175,13 +175,12 @@ class Energy_Resources:
                 break
                 
         return check_bool, tcost, int(round(envcost))
-    
-    
-
+     
+#%%
 class FarmersActions:
     def __init__(self, player):
         self.player = player
-        self.owe_money = 0
+        self.owe_money = 0 # Every farmer starts with 0 money owe for that round
         self.owe_taxes = 5 #every farmer pays $5 regarless
         
         self.land_f = 0
@@ -195,7 +194,7 @@ class FarmersActions:
         check_bool = 1
 
         while(check_bool == 1):
-            owe_money = self.owe_money
+            owe_money = self.owe_money 
             owe_taxes = self.owe_taxes
             
             land_bool = 0
@@ -219,12 +218,22 @@ class FarmersActions:
                     if land_int != '':
                         if int(land_int) not in game.board_nodes.keys():
                             print("Please enter a valid intersection ID.")
+                    else:
                 
-                land_int = int(land_int)
-                land_f = 0 
-                for i in game.board_nodes[land_int][0]:
-                    for ii in game.board_nodes[land_int][1]:
-                        print(game.board[i,ii])
+                        land_int = int(land_int)
+                        land_f = 0 
+                        for i in game.board_nodes[land_int][0]:
+                            for ii in game.board_nodes[land_int][1]:
+                                if game.board[i,ii] == 1:
+                                    self.land_tiles.append((i,ii))
+                                    land_f = land_f + 1
+                
+                        if land_f == 0:
+                            print("That intersection is already taken. Please enter a different intersection ID.")
+                            self.land_tiles = []
+                            land_int = ''
+                            
+                    
                 
                 owe_money = owe_money + land_f*10
                 owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
@@ -238,6 +247,9 @@ class FarmersActions:
                     self.land_f = land_f
                     self.owe_money = self.owe_money + self.land_f*10
                     self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
+                    
+                    for i,ii in self.land_tiles:
+                        game.board[i,ii] = -int(self.player.strip('farmer'))
                     check_bool = 0
             else:
                 check_bool = 0
