@@ -30,7 +30,6 @@ energy = FEWnopoly.Energy_Resources()
 #draw_ecard = FEWnopoly.DrawEventCard()
 
 
-
 # --------------------------------------------------------
 # ROUND counter
 
@@ -108,6 +107,12 @@ for i in range(1,4):
                 farmer_actions = FEWnopoly.FarmersActions(player)
                 
                 farmer_actions.BuyLand(game)
+                if farmer_actions.land_f > 0:
+                    wr_id = farmer_actions.land_tiles.keys()[0]
+                    game.players[player]['land_tiles'][wr_id] = []
+                    for i,ii in farmer_actions.land_tiles[wr_id]:
+                       game.players[player]['land_tiles'][wr_id].append((i,ii))
+                       
                 farmer_actions.PlantCrops(game)
                 farmer_actions.BuyPipes(game)
                 farmer_actions.BuyWells(game)

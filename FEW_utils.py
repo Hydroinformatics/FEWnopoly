@@ -39,12 +39,14 @@ def init_farmers(players,inhr_cards):
     for player in players.keys():
         if player != 'governor':
             players[player]['money'] = inhr_cards[wr_cards[counter]]['money']
-            players[player]['water_right']['order'] = inhr_cards[wr_cards[counter]]['order']
-            players[player]['water_right']['volume'] = inhr_cards[wr_cards[counter]]['volume']
+            players[player]['water_rights'][counter] = dict()
+            players[player]['water_rights'][counter]['order'] = inhr_cards[wr_cards[counter]]['order']
+            players[player]['water_rights'][counter]['volume'] = inhr_cards[wr_cards[counter]]['volume']
             wr_seniority.append(inhr_cards[wr_cards[counter]]['order'])
             counter = counter + 1
             
     play_order = np.argsort(wr_seniority) #index of sort wr orders
+    # Initiates play order for first round based on water right seniority
     counter = 0
     for player in players.keys():
         if player != 'governor':

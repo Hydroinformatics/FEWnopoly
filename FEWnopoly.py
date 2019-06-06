@@ -23,9 +23,9 @@ class players:
                 self.player['farmer' + str(i)]['own_tax']  = 0
                 self.player['farmer' + str(i)]['energy']  = 0
                 self.player['farmer' + str(i)]['play_order']  = None
-                self.player['farmer' + str(i)]['water_right'] = dict()
+                self.player['farmer' + str(i)]['water_rights'] = dict()
                 self.player['farmer' + str(i)]['farms'] = dict()
-                self.player['farmer' + str(i)]['land_tiles'] = []
+                self.player['farmer' + str(i)]['land_tiles'] = dict()
                 
         else: #Respects the chosen roles by users
               # Will fail if words are misspelled. Need to fix.
@@ -42,9 +42,9 @@ class players:
                     self.player['farmer' + str(farmer_count)]['own_tax']  = 0
                     self.player['farmer' + str(farmer_count)]['energy']  = 0
                     self.player['farmer' + str(farmer_count)]['play_order']  = None
-                    self.player['farmer' + str(farmer_count)]['water_right'] = dict()
+                    self.player['farmer' + str(farmer_count)]['water_rights'] = dict()
                     self.player['farmer' + str(farmer_count)]['farms'] = dict()
-                    self.player['farmer' + str(farmer_count)]['land_tiles'] = []
+                    self.player['farmer' + str(farmer_count)]['land_tiles'] = dict()
                     farmer_count = farmer_count + 1
         
 
@@ -204,7 +204,7 @@ class FarmersActions:
         self.pipes_f = 0
         self.wells_f = 0
         self.crops_f = dict()
-        self.land_tiles = []
+        self.land_tiles = dict()
         
         
     def BuyLand(self, game):
@@ -225,33 +225,56 @@ class FarmersActions:
                     print("Please reply 'yes' or 'no'.")
                 
             if land_buy.lower() == 'yes':
-                
+                land_f = 0 
                 land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
-                while land_int == '':
+                
+                while land_int == '' or land_f == 0:
                     if land_int == '':
                         print("That wasn't a number!")
-                    land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                        land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
                     
-                    if land_int != '':
+                    elif land_int != '':
                         if int(land_int) not in game.board_nodes.keys():
                             print("Please enter a valid intersection ID.")
-                    else:
-                
-                        land_int = int(land_int)
-                        land_f = 0 
-                        for i in game.board_nodes[land_int][0]:
-                            for ii in game.board_nodes[land_int][1]:
-                                if game.board[i,ii] == 1:
-                                    self.land_tiles.append((i,ii))
-                                    land_f = land_f + 1
-                
-                        if land_f == 0:
-                            print("That intersection is already taken. Please enter a different intersection ID.")
-                            self.land_tiles = []
                             land_int = ''
-                            
+                            land_int = input('Enter the intersection ID for the land ' + game.players[self.player]['name'] + ' wants buy in this round: ')
+                        else:
+                            land_int = int(land_int)
+                            land_f = 0 
+                            for i in game.board_nodes[land_int][0]:
+                                for ii in game.board_nodes[land_int][1]:
+                                    if game.board[i,ii] == 1:
+                                        #self.land_tiles.append((i,ii))
+                                        land_f = land_f + 1
                     
+                            if land_f == 0:
+                                print("That intersection seems it is already taken. Please enter a different intersection ID.")
+                                self.land_tiles = []
+                                land_int = ''
+                                land_f = 0
+                            
+                wr_id = -999
+                if land_f != 0:
+                    while wr_id == -999:
+                        available_wr = list(set(game.players[self.player]['water_rights'].keys()) - set(game.players[self.player]['land_tiles'].keys()))
+                        wrtext = [str(i) for i in available_wr]
+                        wrtext = ",".join(wrtext)
+                        
+                        wr_id = input(game.players[self.player]['name'] + ', please enter the water right (ie., order) that you would like to use for intersection ID ' + str(land_int) + '. Available water rights you have are [' + wrtext + ']: ')
+                        if wr_id == '':
+                            print("Please enter a valid intersection ID.")
+                            wr_id = -999
+                        elif int(wr_id) not in available_wr:
+                            print("Please enter a valid intersection ID.")
+                            wr_id = -999
                 
+                if wr_id != -999:
+                    self.land_tiles[int(wr_id)] = []
+                    for i in game.board_nodes[land_int][0]:
+                        for ii in game.board_nodes[land_int][1]:
+                            if game.board[i,ii] == 1:
+                                self.land_tiles[int(wr_id)].append((i,ii))
+                                
                 owe_money = owe_money + land_f*10
                 owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
                 
@@ -265,7 +288,7 @@ class FarmersActions:
                     self.owe_money = self.owe_money + self.land_f*10
                     self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
                     
-                    for i,ii in self.land_tiles:
+                    for i,ii in self.land_tiles[int(wr_id)]:
                         game.board[i,ii] = -int(self.player.strip('farmer'))
                     check_bool = 0
             else:
