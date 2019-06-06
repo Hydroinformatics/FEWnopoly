@@ -2,7 +2,7 @@
 
 import FEW_utils as ut
 import sys
-input = raw_input
+#input = raw_input
 
 class players:
     def __init__(self, names,roles=None):
@@ -70,6 +70,7 @@ class Boardgame:
         self.gw_lim = 0 # groundwater limit
         self.env_lim = 0 # environmental degradation limit
         self.fish_lim = 15 # Salmon pop. limit
+        self.sw_lim = 0 # surface water limit
         
         #Initiate the game & parameters based on selected mode
         self.event_cards = None
@@ -109,7 +110,7 @@ class Boardgame:
 
     def check_status(self):
         
-        if self.gw_level < self.gw_lim or self.env_level > self.env_lim or self.fish_level < self.fish_lim:
+        if self.gw_level < self.gw_lim or self.env_level < self.env_lim or self.fish_level < self.fish_lim or self.sw_level < self.sw_lim:
             print("Game Over")
             sys.exit()
         
@@ -118,7 +119,20 @@ class Boardgame:
             sys.exit()
         
     
-    def set_surface_water_level(self):
+    def set_sw_level(self):
+
+        if (self.mode == 'easy'):
+            self.sw_level = ut.three_dieroll() + 14
+            print("The surface water level has been reset to: " + str(self.sw_level))
+
+        elif (self.mode == 'medium'):
+            self.sw_level = ut.three_dieroll() + 18
+            print("The surface water level has been reset to: " + str(self.sw_level))
+
+        elif (self.mode == 'hard'):
+            self.sw_level = ut.three_dieroll() + 22
+            print("The surface water level has been reset to: " + str(self.sw_level))
+
         
     def GW_track(self, a):
         self.gw_lim = gw - int(a)
@@ -128,10 +142,12 @@ class Boardgame:
 
 class DrawEventCard:
     def __init__(self):
-        #self.event_cards = ecards
-    
+        self.event_cards = ecards
+
     def EventActions(self, ecard):
-        
+
+
+
         
 class Energy_Resources:
     def __init__(self):

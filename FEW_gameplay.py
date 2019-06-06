@@ -29,6 +29,8 @@ energy = FEWnopoly.Energy_Resources()
 
 draw_ecard = FEWnopoly.DrawEventCard()
 
+
+
 # --------------------------------------------------------
 # ROUND counter
 
@@ -115,7 +117,10 @@ for i in range(1,4):
                 
 
 #Step 3: Set Surface water level   
-                    
+
+FEWnopoly.Boardgame.set_sw_level()
+
+
 #Step 4: Draw event card
 draw_ecard.EventActions(ecard)
                 
