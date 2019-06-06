@@ -27,6 +27,7 @@ m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
+
 #draw_ecard = FEWnopoly.DrawEventCard()
 
 
@@ -129,7 +130,7 @@ for i in range(1,4):
 
 #Step 3: Set Surface water level   
 
-FEWnopoly.Boardgame.set_sw_level()
+game.set_sw_level()
 
 
 #Step 4: Draw event card

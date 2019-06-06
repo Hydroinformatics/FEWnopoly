@@ -127,15 +127,15 @@ class Boardgame:
 
         if (self.mode == 'easy'):
             self.sw_level = ut.three_dieroll() + 14
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
         elif (self.mode == 'medium'):
             self.sw_level = ut.three_dieroll() + 18
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
         elif (self.mode == 'hard'):
             self.sw_level = ut.three_dieroll() + 22
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
 
         
