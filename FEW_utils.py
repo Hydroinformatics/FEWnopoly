@@ -21,11 +21,19 @@ def init_event_cards(mode,ecards):
     #Missing the controling for event card types explained in the rules
     event_cards = []
     if mode == 'easy':
-        for i in range(0,6):
-            card = event_cards.append(random.choice(list(ecards.keys())))
-            # print(event_cards[i])
-            d[event_cards[i]] = 1
-            print(d)
+        for card1 in range(0,6):
+            event_cards.append(random.choice(list(ecards.keys())))
+            print(event_cards[card1])
+
+         # EXAMPLE IF STATEMENT FOR EVENT CARD FUNCTINALITY
+        # for card2 in range (1,6):
+        #     # event_cards[card2]
+        #     print(event_cards[card2])
+        #     # print(card2)
+        if 'Potatos Blight' == event_cards[card1]:
+            print('test')
+        else:
+            print('fail')
 
 
     elif mode == 'medium': 
@@ -36,6 +44,9 @@ def init_event_cards(mode,ecards):
             event_cards.append(random.choice(list(ecards.keys())))
             
     return event_cards
+
+
+
 
 
 def init_farmers(players,inhr_cards):

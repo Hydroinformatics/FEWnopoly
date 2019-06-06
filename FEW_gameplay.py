@@ -134,7 +134,7 @@ game.set_sw_level()
 
 
 #Step 4: Draw event card
-DrawEventCard.EventActions(ecard)
+# DrawEventCard.EventActions(ecard)
                 
                 
 
