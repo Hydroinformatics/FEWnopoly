@@ -144,13 +144,18 @@ class Boardgame:
         print(self.gw_init)
 
 #%%
-#class DrawEventCard:
-#    def __init__(self):
-#        #self.event_cards = ecards
-#    
-#    def EventActions(self, ecard):
-        
-#%%        
+class DrawEventCard:
+   def __init__(self, mode):
+       self.mode = mode
+       self.event_cards = ut.init_event_cards(self.mode, ut.event_cards)
+
+   def EventActions(self):
+       if (self.mode == 'easy'):
+           print('hi')
+
+       else:
+           print ('N/A')
+#%%
 class Energy_Resources:
     def __init__(self):
         self.energy_tabs = ut.energy_tabs        

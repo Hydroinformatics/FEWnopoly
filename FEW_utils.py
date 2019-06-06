@@ -3,6 +3,8 @@
 import random, json
 import numpy as np
 
+d = {}
+
 def shuffle_strings(data):
 #    shuffle_data = []
 #    for w in random.sample(data, len(data)):
@@ -20,7 +22,12 @@ def init_event_cards(mode,ecards):
     event_cards = []
     if mode == 'easy':
         for i in range(0,6):
-            event_cards.append(random.choice(list(ecards.keys())))
+            card = event_cards.append(random.choice(list(ecards.keys())))
+            # print(event_cards[i])
+            d[event_cards[i]] = 1
+            print(d)
+
+
     elif mode == 'medium': 
         for i in range(0,13):
             event_cards.append(random.choice(list(ecards.keys())))

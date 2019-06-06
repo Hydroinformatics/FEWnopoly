@@ -28,8 +28,8 @@ game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
 
-#draw_ecard = FEWnopoly.DrawEventCard()
-
+# draw_ecard = FEWnopoly.DrawEventCard(m)
+# draw_ecard.EventActions()
 
 # --------------------------------------------------------
 # ROUND counter
@@ -134,7 +134,7 @@ game.set_sw_level()
 
 
 #Step 4: Draw event card
-#draw_ecard.EventActions(ecard)
+DrawEventCard.EventActions(ecard)
                 
                 
 
