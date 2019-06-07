@@ -1,1 +1,1 @@
-{"1": {"volume": Infinity, "money": 100, "order": 1}, "2": {"volume": Infinity, "money": 110, "order": 3}, "3": {"volume": Infinity, "money": 125, "order": 5}}
+{"1": {"volume": Infinity, "money": 100, "wr_id": 1, "order": 1}, "2": {"volume": Infinity, "money": 110, "wr_id": 2, "order": 3}, "3": {"volume": Infinity, "money": 125, "wr_id": 3, "order": 5}}

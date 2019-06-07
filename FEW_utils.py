@@ -39,9 +39,10 @@ def init_farmers(players,inhr_cards):
     for player in players.keys():
         if player != 'governor':
             players[player]['money'] = inhr_cards[wr_cards[counter]]['money']
-            players[player]['water_rights'][counter] = dict()
-            players[player]['water_rights'][counter]['order'] = inhr_cards[wr_cards[counter]]['order']
-            players[player]['water_rights'][counter]['volume'] = inhr_cards[wr_cards[counter]]['volume']
+            wr_id = inhr_cards[wr_cards[counter]]['wr_id']
+            players[player]['water_rights'][wr_id] = dict()
+            players[player]['water_rights'][wr_id]['order'] = inhr_cards[wr_cards[counter]]['order']
+            players[player]['water_rights'][wr_id]['volume'] = inhr_cards[wr_cards[counter]]['volume']
             wr_seniority.append(inhr_cards[wr_cards[counter]]['order'])
             counter = counter + 1
             

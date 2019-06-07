@@ -23,9 +23,9 @@ fish_pop_table = {'Inf-20':{'max': float('Inf'), 'min':20, 'pop_rates':[5,5,5,4,
                   'Fish pop range': ['49-45','44-40','39-35','34-30','29-25','24-20','19-15','14-10','9-5','4-1']}
 
 
-inheritance_cards = {1:{'order': 1, 'money': 100, 'volume': float('Inf')},
-                     2:{'order': 3, 'money': 110, 'volume': float('Inf')},
-                     3:{'order': 5, 'money': 125, 'volume': float('Inf')}}
+inheritance_cards = {1:{'wr_id': 1, 'order': 1, 'money': 100, 'volume': float('Inf')},
+                     2:{'wr_id': 2, 'order': 3, 'money': 110, 'volume': float('Inf')},
+                     3:{'wr_id': 3, 'order': 5, 'money': 125, 'volume': float('Inf')}}
 
 hydro_cost = {30: 1, 20: 2, 10: 3, 0:4}
 energy_tabs = {'coal':{1:{'max_capacity': 15, 'env_cost': 1.0/3, 'dollar_cost': 1}},

@@ -124,8 +124,6 @@ for i in range(1,4):
                 for crop in game.crops.keys():
                     game.players[player]['farms'][crop] = game.players[player]['farms'][crop] - farmer_actions.land
                 
-                
-                
 
 #Step 3: Set Surface water level   
 

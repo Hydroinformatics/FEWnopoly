@@ -262,10 +262,10 @@ class FarmersActions:
                         
                         wr_id = input(game.players[self.player]['name'] + ', please enter the water right (ie., order) that you would like to use for intersection ID ' + str(land_int) + '. Available water rights you have are [' + wrtext + ']: ')
                         if wr_id == '':
-                            print("Please enter a valid intersection ID.")
+                            print("Please enter a valid water right ID.")
                             wr_id = -999
                         elif int(wr_id) not in available_wr:
-                            print("Please enter a valid intersection ID.")
+                            print("Please enter a valid water right ID.")
                             wr_id = -999
                 
                 if wr_id != -999:
@@ -276,7 +276,7 @@ class FarmersActions:
                                 self.land_tiles[int(wr_id)].append((i,ii))
                                 
                 owe_money = owe_money + land_f*10
-                owe_taxes = owe_taxes + (game.players[self.player]['land'] + land_f)*2 #Land tax
+                owe_taxes = owe_taxes + land_f*2 #Land tax
                 
                 if game.players[self.player]['money'] - (owe_money + owe_taxes) < 0 or land_f > 4:
                     if land_f <= 4:
@@ -285,8 +285,8 @@ class FarmersActions:
                         print("You can only buy a max. of four land tiles in a turn.")
                 else:
                     self.land_f = land_f
-                    self.owe_money = self.owe_money + self.land_f*10
-                    self.owe_taxes = self.owe_taxes + (game.players[self.player]['land'] + self.land_f)*2 #Land tax
+                    self.owe_money = self.owe_money + owe_money
+                    self.owe_taxes = self.owe_taxes + owe_taxes #Land tax
                     
                     for i,ii in self.land_tiles[int(wr_id)]:
                         game.board[i,ii] = -int(self.player.strip('farmer'))
