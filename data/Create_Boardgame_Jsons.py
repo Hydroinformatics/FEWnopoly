@@ -5,13 +5,13 @@ import json
 import numpy as np
 
 event_cards = {'Onion Blight': 'All onion farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
-              'Potatos Blight':'All potato farmers roll a die. If you get a number below 3, you can harvest 2 of your potato farms.',
-              'Enviromental tax': 'The whole group must pay a total of however much enviromental damage has been incurred.',
-              'Rainy year': 'Add specified units to the surface water level',
+              'Potato Blight':'All potato farmers roll a die. If you get a number below 3, you can harvest 2 of your potato farms.',
+              'Environmental Tax': 'The whole group must pay a total of however much enviromental damage has been incurred.',
+              'Rainy Year': 'Add specified units to the surface water level',
               'Drought': 'Substract specified units from surface water',
               'Extreme Drought': 'Substract specified units from surface water for the next 2 turns',
               'City Grows': 'The food needs of the cities increase',
-              'Farmer sell water rights': 'Farmer selects a water right card randomly and auction it off'}
+              'Farmer Sell Water Right': 'Farmer selects a water right card randomly and auction it off'}
 
 
 fish_pop_table = {'Inf-20':{'max': float('Inf'), 'min':20, 'pop_rates':[5,5,5,4,4,3,2,2,1,1]},

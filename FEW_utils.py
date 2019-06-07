@@ -32,13 +32,34 @@ def init_event_cards(mode,ecards):
         card7 = deck[6][0]
         card8 = deck[7][0]
 
-        print(card1)
-        print(card2)
-        print(card3)
-        print(card4)
-        print(card5)
-        print(card6)
-        print(card7)
+        if card1 == "Onion Blight":
+            print('1')
+        if card1 == "Potatos Blight":
+            print('2')
+        if card1 == "Environmental tax":
+
+            print('3')
+
+        if card1 == "Rainy year":
+            print('4')
+        if card1 == "Drought":
+            print('5')
+        if card1 == "Extreme Drought":
+            print('6')
+        if card1 == "City Grows":
+            print('7')
+        if card1 == "Farmer sell water rights":
+            print('8')
+
+
+
+        print('card: ' + card1)
+        # print(card2)
+        # print(card3)
+        # print(card4)
+        # print(card5)
+        # print(card6)
+        # print(card7)
 
         # keys = list(event_cards.keys())
         # random.shuffle(keys)
