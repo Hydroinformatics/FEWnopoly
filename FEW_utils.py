@@ -34,13 +34,11 @@ def init_event_cards(mode,ecards):
 
         if card1 == "Onion Blight":
             print('1')
-        if card1 == "Potatos Blight":
+        if card1 == "Potato Blight":
             print('2')
-        if card1 == "Environmental tax":
-
+        if card1 == "Environmental Tax":
             print('3')
-
-        if card1 == "Rainy year":
+        if card1 == "Rainy Year":
             print('4')
         if card1 == "Drought":
             print('5')
@@ -48,7 +46,7 @@ def init_event_cards(mode,ecards):
             print('6')
         if card1 == "City Grows":
             print('7')
-        if card1 == "Farmer sell water rights":
+        if card1 == "Farmer Sell Water Rights":
             print('8')
 
 
