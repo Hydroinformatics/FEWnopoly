@@ -147,14 +147,13 @@ class Boardgame:
 class DrawEventCard:
    def __init__(self, mode):
        self.mode = mode
-       self.event_cards = ut.init_event_cards(self.mode, ut.event_cards)
+       self.event_cards = ut.event_cards
+       self.deck = ut.init_event_cards
 
    def EventActions(self):
-       if (self.mode == 'easy'):
-           print('hi')
+       # print(d)
 
-       else:
-           print ('N/A')
+
 #%%
 class Energy_Resources:
     def __init__(self):
@@ -249,7 +248,7 @@ class FarmersActions:
                             for i in game.board_nodes[land_int][0]:
                                 for ii in game.board_nodes[land_int][1]:
                                     if game.board[i,ii] == 1:
-                                        #self.land_tiles.append((i,ii))
+                                        # self.land_tiles.append((i,ii))
                                         land_f = land_f + 1
                     
                             if land_f == 0:

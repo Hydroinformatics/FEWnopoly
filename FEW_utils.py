@@ -15,14 +15,13 @@ def dieroll():
 def three_dieroll():
     return random.randrange(1, 6, 1) + random.randrange(1, 6, 1) + random.randrange(1, 6, 1)
 
-def init_event_cards(mode,ecards):
+def init_event_cards(mode, ecards):
     #Missing the controling for event card types explained in the rules
 
     if mode == 'easy':
         deck = list(event_cards.items())
         random.shuffle(deck)
-        # for value in deck:
-        #     (value)
+
         card1 = deck[0][0]
         card2 = deck[1][0]
         card3 = deck[2][0]
@@ -32,18 +31,29 @@ def init_event_cards(mode,ecards):
         card7 = deck[6][0]
         card8 = deck[7][0]
 
+        d = {card1, card2, card3, card4, card5, card6}
+        print(d)
+
         if card1 == "Onion Blight":
             print('1')
+            if #farmer has onion crops > 0
+                #farmer onion crops - 2
         if card1 == "Potato Blight":
             print('2')
+            if  # farmer has potato crops > 0
+            # farmer potato crops - 2
         if card1 == "Environmental Tax":
             print('3')
+            #all players money - envcost
         if card1 == "Rainy Year":
             print('4')
+            #sw_level = set_sw_level + 2
         if card1 == "Drought":
             print('5')
+            #sw_level = set_sw_level - 2
         if card1 == "Extreme Drought":
             print('6')
+            #sw_level = set_sw_level - 3
         if card1 == "City Grows":
             print('7')
         if card1 == "Farmer Sell Water Rights":
@@ -58,32 +68,6 @@ def init_event_cards(mode,ecards):
         # print(card5)
         # print(card6)
         # print(card7)
-
-        # keys = list(event_cards.keys())
-        # random.shuffle(keys)
-        # for key in keys:
-        #     return(key, event_cards[key])
-
-
-        # for card1 in range(0,1):
-        #     event_cards.append(random.choice(list(ecards.keys())))
-        #     print(event_cards)
-            # print(event_cards[1]['card'])
-
-
-
-
-
-
-         # EXAMPLE IF STATEMENT FOR EVENT CARD FUNCTINALITY
-        # for card2 in range (1,6):
-        #     # event_cards[card2]
-        #     print(event_cards[card2])
-        #     # print(card2)
-        # if 'Potatos Blight' == event_cards[card1]:
-        #     print('test')
-        # else:
-        #     print('fail')
 
 
     elif mode == 'medium': 
