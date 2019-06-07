@@ -3,8 +3,6 @@
 import random, json
 import numpy as np
 
-d = {}
-
 def shuffle_strings(data):
 #    shuffle_data = []
 #    for w in random.sample(data, len(data)):
@@ -19,21 +17,54 @@ def three_dieroll():
 
 def init_event_cards(mode,ecards):
     #Missing the controling for event card types explained in the rules
-    event_cards = []
+
     if mode == 'easy':
-        for card1 in range(0,6):
-            event_cards.append(random.choice(list(ecards.keys())))
-            print(event_cards[card1])
+        deck = list(event_cards.items())
+        random.shuffle(deck)
+        # for value in deck:
+        #     (value)
+        card1 = deck[0][0]
+        card2 = deck[1][0]
+        card3 = deck[2][0]
+        card4 = deck[3][0]
+        card5 = deck[4][0]
+        card6 = deck[5][0]
+        card7 = deck[6][0]
+        card8 = deck[7][0]
+
+        print(card1)
+        print(card2)
+        print(card3)
+        print(card4)
+        print(card5)
+        print(card6)
+        print(card7)
+
+        # keys = list(event_cards.keys())
+        # random.shuffle(keys)
+        # for key in keys:
+        #     return(key, event_cards[key])
+
+
+        # for card1 in range(0,1):
+        #     event_cards.append(random.choice(list(ecards.keys())))
+        #     print(event_cards)
+            # print(event_cards[1]['card'])
+
+
+
+
+
 
          # EXAMPLE IF STATEMENT FOR EVENT CARD FUNCTINALITY
         # for card2 in range (1,6):
         #     # event_cards[card2]
         #     print(event_cards[card2])
         #     # print(card2)
-        if 'Potatos Blight' == event_cards[card1]:
-            print('test')
-        else:
-            print('fail')
+        # if 'Potatos Blight' == event_cards[card1]:
+        #     print('test')
+        # else:
+        #     print('fail')
 
 
     elif mode == 'medium': 
@@ -93,8 +124,16 @@ with open('./data/inheritance_cards.json', 'r') as f:
 with open('./data/energy_tabs.json', 'r') as f:
     energy_tabs = json.load(f)
 
+with open('./data/pumping_cost_easy.json', 'r') as f:
+    pumping_cost_easy = json.load(f)
 
-#%% Create game board 
+with open('./data/pumping_cost_medium.json', 'r') as f:
+    pumping_cost_medium = json.load(f)
+
+with open('./data/pumping_cost_hard.json', 'r') as f:
+    pumping_cost_hard = json.load(f)
+
+#%% Create game board
 board = np.zeros((10,14))
 
 #Water 

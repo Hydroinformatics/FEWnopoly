@@ -1,0 +1,1 @@
+{"100 - 90": {"max": 100, "min": 90, "pump_rate": 0}, "89 - 80": {"max": 89, "min": 80, "pump_rate": 1}, "79 - 75": {"max": 79, "min": 75, "pump_rate": 2}, "74 - 70": {"max": 74, "min": 70, "pump_rate": 3}, "69 - 0": {"max": 69, "min": 0, "pump_rate": 4}}

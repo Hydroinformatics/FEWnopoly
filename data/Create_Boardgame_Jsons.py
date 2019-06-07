@@ -4,8 +4,8 @@
 import json
 import numpy as np
 
-event_cards = {'Onion Blight':'All onion farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
-              'Potatos Blight':'All potato farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
+event_cards = {'Onion Blight': 'All onion farmers roll a die. If you get a number below 3, you can harvest 2 of your onion farms.',
+              'Potatos Blight':'All potato farmers roll a die. If you get a number below 3, you can harvest 2 of your potato farms.',
               'Enviromental tax': 'The whole group must pay a total of however much enviromental damage has been incurred.',
               'Rainy year': 'Add specified units to the surface water level',
               'Drought': 'Substract specified units from surface water',
