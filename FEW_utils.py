@@ -15,12 +15,61 @@ def dieroll():
 def three_dieroll():
     return random.randrange(1, 6, 1) + random.randrange(1, 6, 1) + random.randrange(1, 6, 1)
 
-def init_event_cards(mode,ecards):
+def init_event_cards(mode, ecards):
     #Missing the controling for event card types explained in the rules
-    event_cards = []
+
     if mode == 'easy':
-        for i in range(0,6):
-            event_cards.append(random.choice(list(ecards.keys())))
+        deck = list(event_cards.items())
+        random.shuffle(deck)
+
+        card1 = deck[0][0]
+        card2 = deck[1][0]
+        card3 = deck[2][0]
+        card4 = deck[3][0]
+        card5 = deck[4][0]
+        card6 = deck[5][0]
+        card7 = deck[6][0]
+        card8 = deck[7][0]
+
+        d = {card1, card2, card3, card4, card5, card6}
+        print(d)
+
+        if card1 == "Onion Blight":
+            print('1')
+            if #farmer has onion crops > 0
+                #farmer onion crops - 2
+        if card1 == "Potato Blight":
+            print('2')
+            if  # farmer has potato crops > 0
+            # farmer potato crops - 2
+        if card1 == "Environmental Tax":
+            print('3')
+            #all players money - envcost
+        if card1 == "Rainy Year":
+            print('4')
+            #sw_level = set_sw_level + 2
+        if card1 == "Drought":
+            print('5')
+            #sw_level = set_sw_level - 2
+        if card1 == "Extreme Drought":
+            print('6')
+            #sw_level = set_sw_level - 3
+        if card1 == "City Grows":
+            print('7')
+        if card1 == "Farmer Sell Water Rights":
+            print('8')
+
+
+
+        print('card: ' + card1)
+        # print(card2)
+        # print(card3)
+        # print(card4)
+        # print(card5)
+        # print(card6)
+        # print(card7)
+
+
     elif mode == 'medium': 
         for i in range(0,13):
             event_cards.append(random.choice(list(ecards.keys())))
@@ -29,6 +78,9 @@ def init_event_cards(mode,ecards):
             event_cards.append(random.choice(list(ecards.keys())))
             
     return event_cards
+
+
+
 
 
 def init_farmers(players,inhr_cards):
@@ -76,8 +128,16 @@ with open('./data/inheritance_cards.json', 'r') as f:
 with open('./data/energy_tabs.json', 'r') as f:
     energy_tabs = json.load(f)
 
+with open('./data/pumping_cost_easy.json', 'r') as f:
+    pumping_cost_easy = json.load(f)
 
-#%% Create game board 
+with open('./data/pumping_cost_medium.json', 'r') as f:
+    pumping_cost_medium = json.load(f)
+
+with open('./data/pumping_cost_hard.json', 'r') as f:
+    pumping_cost_hard = json.load(f)
+
+#%% Create game board
 board = np.zeros((10,14))
 
 #Water 

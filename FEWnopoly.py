@@ -127,15 +127,15 @@ class Boardgame:
 
         if (self.mode == 'easy'):
             self.sw_level = ut.three_dieroll() + 14
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
         elif (self.mode == 'medium'):
             self.sw_level = ut.three_dieroll() + 18
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
         elif (self.mode == 'hard'):
             self.sw_level = ut.three_dieroll() + 22
-            print("The surface water level has been reset to: " + str(self.sw_level))
+            print("The surface water level has been set to: " + str(self.sw_level))
 
 
         
@@ -144,13 +144,17 @@ class Boardgame:
         print(self.gw_init)
 
 #%%
-#class DrawEventCard:
-#    def __init__(self):
-#        #self.event_cards = ecards
-#    
-#    def EventActions(self, ecard):
-        
-#%%        
+class DrawEventCard:
+   def __init__(self, mode):
+       self.mode = mode
+       self.event_cards = ut.event_cards
+       self.deck = ut.init_event_cards
+
+   def EventActions(self):
+       # print(d)
+
+
+#%%
 class Energy_Resources:
     def __init__(self):
         self.energy_tabs = ut.energy_tabs        
@@ -244,7 +248,7 @@ class FarmersActions:
                             for i in game.board_nodes[land_int][0]:
                                 for ii in game.board_nodes[land_int][1]:
                                     if game.board[i,ii] == 1:
-                                        #self.land_tiles.append((i,ii))
+                                        # self.land_tiles.append((i,ii))
                                         land_f = land_f + 1
                     
                             if land_f == 0:

@@ -27,8 +27,10 @@ m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
-#draw_ecard = FEWnopoly.DrawEventCard()
 
+
+draw_from_event_deck = FEWnopoly.DrawEventCard(m)
+draw_from_event_deck.EventActions()
 
 # --------------------------------------------------------
 # ROUND counter
@@ -108,7 +110,7 @@ for i in range(1,4):
                 
                 farmer_actions.BuyLand(game)
                 if farmer_actions.land_f > 0:
-                    wr_id = farmer_actions.land_tiles.keys()[0]
+                    wr_id = farmer_actions.land_tiles.keys()[0] #Not working- "dict_keys object is not subscriptable"
                     game.players[player]['land_tiles'][wr_id] = []
                     for i,ii in farmer_actions.land_tiles[wr_id]:
                        game.players[player]['land_tiles'][wr_id].append((i,ii))
@@ -127,11 +129,12 @@ for i in range(1,4):
 
 #Step 3: Set Surface water level   
 
-FEWnopoly.Boardgame.set_sw_level()
+game.set_sw_level()
 
 
 #Step 4: Draw event card
-#draw_ecard.EventActions(ecard)
+# DrawEventCard.EventActions(ecard)
+
                 
                 
 
