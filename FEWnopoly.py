@@ -148,10 +148,34 @@ class DrawEventCard:
    def __init__(self, mode):
        self.mode = mode
        self.event_cards = ut.event_cards
-       self.deck = ut.init_event_cards
+       
+   def EventActions(self, card1):
+       
+       if card1 == "Onion Blight":
+            print('1')
+            if #farmer has onion crops > 0
+                #farmer onion crops - 2
+        if card1 == "Potato Blight":
+            print('2')
+            if  # farmer has potato crops > 0
+            # farmer potato crops - 2
+        if card1 == "Environmental Tax":
+            print('3')
+            #all players money - envcost
+        if card1 == "Rainy Year":
+            print('4')
+            #sw_level = set_sw_level + 2
+        if card1 == "Drought":
+            print('5')
+            #sw_level = set_sw_level - 2
+        if card1 == "Extreme Drought":
+            print('6')
+            #sw_level = set_sw_level - 3
+        if card1 == "City Grows":
+            print('7')
+        if card1 == "Farmer Sell Water Rights":
+            print('8')
 
-   def EventActions(self):
-       # print(d)
 
 
 #%%
@@ -303,8 +327,8 @@ class FarmersActions:
         check_bool = 1
 
         while(check_bool == 1):
-            owe_money = self.owe_money
-            owe_taxes = self.owe_taxes
+            owe_money = 0
+            owe_taxes = 0
             crops_f = dict()
             needed_land = 0
             
@@ -332,11 +356,13 @@ class FarmersActions:
                     
                     
     def BuyPipes(self, game):
+        # Missing a check if the number of pipes bought actually make sense (e.g., distance from river)
+        # Needed to do a check of water use vs water rights available
         check_bool = 1
         
         while(check_bool == 1):
-            owe_money = self.owe_money
-            owe_taxes = self.owe_taxes
+            owe_money = 0
+            owe_taxes = 0
             
             pipes_f = input('Enter the amount of pipes ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while pipes_f =='':
@@ -356,11 +382,13 @@ class FarmersActions:
                 
                 
     def BuyWells(self, game):
+        # Missing the connection to the gameboard intersection IDs
+        # Needed to do a check of water use vs water rights available
         check_bool = 1
         
         while(check_bool == 1):
-            owe_money = self.owe_money
-            owe_taxes = self.owe_taxes
+            owe_money = 0
+            owe_taxes = 0
             
             wells_f = input('Enter the amount of wells ' + game.players[self.player]['name'] + ' wil buy in this round: ')
             while wells_f == '':
@@ -378,9 +406,65 @@ class FarmersActions:
                 self.owe_money = self.owe_money + owe_money
                 check_bool = 0
         
-
-
-
+        def TradeWaterRight(self):
+            check_bool = 1
+        
+            while(check_bool == 1):
+                trade_wr = str(input('Does ' + game.players[self.player]['name'] + ' wants to trade water rights in this round? [yes/no] '))
+                if trade_wr.lower() == 'yes' or trade_wr.lower() == 'no':
+                    check_bool = 0
+                else:
+                    print("Please reply 'yes' or 'no'.")
+                
+                if check_bool == 0:
+                    wr_id = -999
+                    while wr_id == -999:
+                        available_wr = list(set(game.players[self.player]['water_rights'].keys())) #missing accounting for trading a water right that is already associated with some land
+                        wrtext = [str(i) for i in available_wr]
+                        wrtext = ",".join(wrtext)
+                        
+                        wr_id = input(game.players[self.player]['name'] + ', please enter the water right (ie., order) that you would like to trade. Available water rights you have are [' + wrtext + ']: ')
+                        if wr_id == '':
+                            print("Please enter a valid water right ID.")
+                            wr_id = -999
+                        elif int(wr_id) not in available_wr:
+                            print("Please enter a valid water right ID.")
+                            wr_id = -999
+                    
+                    trading_wr_a = game.players[self.player]['water_rights'][wr_id]
+                    
+                    players_names = [game.players[i]['name'].lower() for i in game.players.keys()]
+                    trader_name = ''
+                    while(trader_name ==''):
+                        trader_name = str(input('Enter the name of the player you will trade water rights with: '))
+                        if trader_name.lower() not in players_names:
+                            print("Please check the spelling of the players' name.")
+                            trader_name = ''
+                    
+                    trader_player = [p for p in game.players.keys() if game.players[p]['name'].lower() == trader_name.lower()]
+                    twr_id = -999
+                    while twr_id == -999:
+                        available_wr = list(set(game.players[trader_player]['water_rights'].keys())) #missing accounting for trading a water right that is already associated with some land
+                        wrtext = [str(i) for i in available_wr]
+                        wrtext = ",".join(wrtext)
+                        
+                        twr_id = input(game.players[trader_player]['name'] + ', please enter the water right (ie., order) that you would like to trade. Available water rights you have are [' + wrtext + ']: ')
+                        if twr_id == '':
+                            print("Please enter a valid water right ID.")
+                            twr_id = -999
+                        elif int(wr_id) not in available_wr:
+                            print("Please enter a valid water right ID.")
+                            twr_id = -999
+                    
+                    trading_wr_b = game.players[trader_player]['water_rights'][twr_id]
+                    
+                    game.players[self.player]['water_rights'][twr_id] = trading_wr_b 
+                    game.players[trader_player]['water_rights'][wr_id] = trading_wr_a
+                    
+                    del game.players[self.player]['water_rights'][wr_id]
+                    del game.players[trader_player]['water_rights'][twr_id]
+                    
+                    
 class PersonalCalc:
     def __init__(self):
         self.wr = None

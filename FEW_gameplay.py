@@ -27,8 +27,6 @@ m = 'easy'
 game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
-
-
 draw_from_event_deck = FEWnopoly.DrawEventCard(m)
 draw_from_event_deck.EventActions()
 
@@ -114,14 +112,15 @@ for i in range(1,4):
                     game.players[player]['land_tiles'][wr_id] = []
                     for i,ii in farmer_actions.land_tiles[wr_id]:
                        game.players[player]['land_tiles'][wr_id].append((i,ii))
-                       
+                
+                
                 farmer_actions.PlantCrops(game)
                 farmer_actions.BuyPipes(game)
                 farmer_actions.BuyWells(game)
                 
-                game.players[player]['money'] = game.players[player]['money'] - farmer_actions.owe_money
-                game.players[player]['own_tax'] = game.players[player]['own_tax'] - farmer_actions.owe_taxes
-                game.players[player]['land'] = game.players[player]['land'] - farmer_actions.land
+#                game.players[player]['money'] = game.players[player]['money'] - farmer_actions.owe_money
+#                game.players[player]['own_tax'] = game.players[player]['own_tax'] + farmer_actions.owe_taxes
+#                game.players[player]['land'] = game.players[player]['land'] + farmer_actions.land_f
                 
                 for crop in game.crops.keys():
                     game.players[player]['farms'][crop] = game.players[player]['farms'][crop] - farmer_actions.land
