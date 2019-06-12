@@ -2,6 +2,7 @@
 
 import numpy as np
 import FEWnopoly
+import FEW_utils as ut
 
 # Gameplay Setup
 
@@ -28,7 +29,8 @@ game = FEWnopoly.Boardgame(m,players.player)
 energy = FEWnopoly.Energy_Resources()
 
 draw_from_event_deck = FEWnopoly.DrawEventCard(m)
-draw_from_event_deck.EventActions()
+draw_from_event_deck.EventActions(draw_from_event_deck.event_cards)
+print(draw_from_event_deck.event_cards[0])
 
 # --------------------------------------------------------
 # ROUND counter

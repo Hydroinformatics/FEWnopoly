@@ -23,9 +23,12 @@ def init_event_cards(mode, ecards):
         for event in ecards.keys():
             if event == 'City Grows' or event == 'Farmer Sell Water Right':
                 del ecards[event]
-        
+            break
+
         for i in range(0,6):
             event_cards.append(random.choice(list(ecards.keys())))
+        return event_cards
+
             
     elif mode == 'medium': 
         

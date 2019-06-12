@@ -147,34 +147,37 @@ class Boardgame:
 class DrawEventCard:
    def __init__(self, mode):
        self.mode = mode
-       self.event_cards = ut.event_cards
-       
+       self.event_cards = ut.init_event_cards
+
    def EventActions(self, card1):
-       
-       if card1 == "Onion Blight":
+
+
+        if card1 == "Onion Blight":
             print('1')
-            if #farmer has onion crops > 0
+            # if #farmer has onion crops > 0
                 #farmer onion crops - 2
-        if card1 == "Potato Blight":
+        elif card1 == "Potato Blight":
             print('2')
-            if  # farmer has potato crops > 0
+            # if  # farmer has potato crops > 0
             # farmer potato crops - 2
-        if card1 == "Environmental Tax":
+        elif card1 == "Environmental Tax":
             print('3')
             #all players money - envcost
-        if card1 == "Rainy Year":
+        elif card1 == "Rainy Year":
             print('4')
             #sw_level = set_sw_level + 2
-        if card1 == "Drought":
+        elif card1 == "Drought":
             print('5')
             #sw_level = set_sw_level - 2
-        if card1 == "Extreme Drought":
+        elif card1 == "Extreme Drought":
             print('6')
             #sw_level = set_sw_level - 3
-        if card1 == "City Grows":
+        elif card1 == "City Grows":
             print('7')
-        if card1 == "Farmer Sell Water Rights":
+        elif card1 == "Farmer Sell Water Rights":
             print('8')
+        else:
+            print('SHIT')
 
 
 
