@@ -4,15 +4,15 @@
 import json
 import numpy as np
 
-event_cards = {'Onion Blight': 'All onion farmers roll a die. If you get a number below 3, two of your onion crops die.',
-              'Potato Blight':'All potato farmers roll a die. If you get a number below 3, two of your potato crops die.',
-              'Environmental Tax': 'The whole group must pay a total of however much enviromental damage has been incurred.',
-              'Rainy Year (+2)': '+2 Surface Water',
-              'Rainy Year (+3)': '+3 Surface Water',
-              'Drought': '-2 Surface Water',
-              'Extreme Drought': '-3 Surface Water for the next 2 turns',
-              'City Grows': 'The food needs of the cities increase',
-              'Farmer Sell Water Right': 'Farmer selects a water right card randomly and auction it off'}
+event_cards = {'Onion Blight': {'Description': 'All onion farmers roll a die. If you get a number below 3, two of your onion crops die.', 'num_cards': 2},
+              'Potato Blight':{'Description':'All potato farmers roll a die. If you get a number below 3, two of your potato crops die.', 'num_cards': 2},
+              'Environmental Tax':{'Description': 'The whole group must pay a total of however much enviromental damage has been incurred.', 'num_cards': 2},
+              'Rainy Year (+2)': {'Description':'+2 Surface Water', 'num_cards': 2},
+              'Rainy Year (+3)': {'Description':'+3 Surface Water', 'num_cards': 2},
+              'Drought':{'Description': '-2 Surface Water', 'num_cards': 2},
+              'Extreme Drought':{'Description': '-3 Surface Water for the next 2 turns', 'num_cards': 2},
+              'City Grows': {'Description':'The food needs of the cities increase', 'num_cards': 2},
+              'Farmer Sell Water Right': {'Description':'Farmer selects a water right card randomly and auction it off', 'num_cards': 2}}
 
 
 fish_pop_table = {'Inf-20':{'max': float('Inf'), 'min':20, 'pop_rates':[5,5,5,4,4,3,2,2,1,1]},
